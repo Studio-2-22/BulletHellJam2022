@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     BulletCollider bc;
     public BulletManager bm;
 
+    public Transform[] weapons;
+
     public float speed = 10f;
     
 
@@ -50,8 +52,11 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(velocity);
 
         if (Input.GetMouseButton(0))
-        {
-            bm.Spawn(transform.position, bm.Plane == BulletPlane.XY ? transform.up : transform.forward);
+        {  
+            
+            bm.Spawn(transform.position, bm.Plane == BulletPlane.XY ? transform.right : transform.forward);
+            
+            
         }
         
         
@@ -62,9 +67,7 @@ public class PlayerController : MonoBehaviour
         //turn the player to face the mouse
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 dir = mousePos - transform.position;
-    
 
-        
         float z = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(z, Vector3.forward);
     }

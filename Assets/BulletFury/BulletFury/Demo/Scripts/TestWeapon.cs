@@ -23,7 +23,7 @@ namespace BulletFury.Demo
             
             
             bulletManager.Spawn(transform.position, bulletManager.Plane == BulletPlane.XY ? transform.up : transform.forward);
-            
+            Debug.Log(transform.position);
             transform.Rotate(bulletManager.Plane == BulletPlane.XY ? Vector3.forward : Vector3.up, (rotateSpeed * Time.smoothDeltaTime));
         }
     }

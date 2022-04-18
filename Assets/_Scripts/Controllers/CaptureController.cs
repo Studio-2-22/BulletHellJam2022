@@ -8,7 +8,7 @@ public class CaptureController : MonoBehaviour
     public GameObject linePrefab;
     public GameObject lineStartPrefab;
     public GameObject lineHeadPrefab;
-    private GameObject currentLine;
+    public GameObject currentLine;
     private GameObject currentLineStart;
     private GameObject currentLineHead;
 
@@ -70,9 +70,12 @@ public class CaptureController : MonoBehaviour
     private void CreateLine()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         currentLineStart = Instantiate(lineStartPrefab, mousePos, Quaternion.identity);
-        currentLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity);
         currentLineHead = Instantiate(lineHeadPrefab, mousePos, Quaternion.identity);
+        currentLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity);
+        currentLine.GetComponent<LineController>().lineStart = currentLineStart;
+        currentLine.GetComponent<LineController>().lineHead = currentLineHead;
         lineRenderer = currentLine.GetComponent<LineRenderer>();
         edgeCollider = currentLine.GetComponent<EdgeCollider2D>();
         polygonCollider = currentLine.GetComponent<PolygonCollider2D>();
@@ -119,7 +122,7 @@ public class CaptureController : MonoBehaviour
         StartCoroutine(DestroyLineCo(lineToDestroy, startToDestroy, headToDestroy));
     }
 
-    private IEnumerator DestroyLineCo(GameObject lineObject, GameObject startObject, GameObject headObject) {
+    public IEnumerator DestroyLineCo(GameObject lineObject, GameObject startObject, GameObject headObject) {
         yield return new WaitForSeconds(0.1f);
         Destroy(lineObject);
         Destroy(startObject);

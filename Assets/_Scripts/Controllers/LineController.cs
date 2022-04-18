@@ -4,7 +4,17 @@ using UnityEngine;
 
 public class LineController : MonoBehaviour
 {
+
+    public GameObject lineHead;
+    public GameObject lineStart;
     public bool loopCompleted = false;
+
+    void Update(){
+        if(CaptureController.instance.currentLine != gameObject){
+            Debug.Log("Destroyed self");
+            DestroySelf();
+        }
+    }
 
    private void OnTriggerEnter2D(Collider2D other)
     {
@@ -31,5 +41,16 @@ public class LineController : MonoBehaviour
             }
         }
     }
+
+    void DestroySelf(){
+        StartCoroutine(DestroySelfCo());
+    }
     
+    IEnumerator DestroySelfCo(){
+        yield return new WaitForSeconds(0.1f);
+        Destroy(lineStart);
+        Destroy(lineHead);
+        Destroy(gameObject);
+        
+    }
 }

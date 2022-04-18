@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SpawnSettings 1
   m_EditorClassIdentifier: 
   fireRate: 0.1
-  burstCount: 1
-  burstDelay: 0.45
+  burstCount: 0
+  burstDelay: 0
   spawnDir: 2
   directionArc: 0
   randomise: 0

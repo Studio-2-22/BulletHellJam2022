@@ -6,15 +6,24 @@ using BulletFury.Data;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody2D rb;
-    BulletCollider bc;
+    public PlayerController instance;
     public BulletManager bm;
 
-    public Transform[] weapons;
-
     public float speed = 10f;
-    
 
+    private Rigidbody2D rb;
+    private BulletCollider bc;
+
+    
+    
+    private void Awake()
+    {
+        if(instance == null){
+            Destroy(instance);
+            instance = this;
+        }
+        instance = this;
+    }
 
 
     // Start is called before the first frame update

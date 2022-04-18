@@ -6,7 +6,7 @@ using BulletFury.Data;
 
 public class PlayerController : MonoBehaviour
 {
-    public PlayerController instance;
+    public static PlayerController instance;
     public BulletManager bm;
 
     public float speed = 10f;
@@ -79,5 +79,11 @@ public class PlayerController : MonoBehaviour
 
         float z = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(z, Vector3.forward);
+    }
+
+    void FireEffects(){
+        //play fire effects
+
+
     }
 }

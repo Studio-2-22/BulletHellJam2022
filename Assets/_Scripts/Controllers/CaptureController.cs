@@ -50,7 +50,7 @@ public class CaptureController : MonoBehaviour
             if(Input.GetMouseButton(1))
             {
                 Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                if(Vector2.Distance(mousePos, points[points.Count - 1]) > 0.5f)
+                if(Vector2.Distance(mousePos, points[points.Count - 1]) > 0.3f)
                 {
                     UpdateLine(mousePos);
                 }
@@ -63,6 +63,13 @@ public class CaptureController : MonoBehaviour
                
                 
             }
+            return;
+        }
+        if(currentLine != null)
+        {
+           
+            CancelLine();
+            
         }
        
     }

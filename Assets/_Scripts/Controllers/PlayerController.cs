@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public BulletManager bm;
 
     public float speed = 10f;
+    public float maxSpeed = 20f;
+    public float friction = 2f;
 
     private Rigidbody2D rb;
     private BulletCollider bc;
@@ -31,7 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BulletCollider>();
-        FaceMouse();
+        
     }
 
     // Update is called once per frame
@@ -39,33 +41,22 @@ public class PlayerController : MonoBehaviour
     {
         FaceMouse();
 
-        Vector2 velocity = Vector2.zero;
+        float horizontal =Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey(KeyCode.W))
-        {
-           velocity += Vector2.up * speed;
+        Vector2 direction = new Vector2(horizontal, vertical).normalized;
+        if(direction.magnitude > 0){
+             rb.AddForce(direction * speed);
+             if(rb.velocity.magnitude > maxSpeed){
+                 rb.velocity = rb.velocity.normalized * maxSpeed;
+             }
+        }else{
+            rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, friction * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            velocity += Vector2.down * speed;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            velocity += Vector2.left * speed;
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            velocity += Vector2.right * speed;
-        }
-        
-        rb.AddForce(velocity);
-
+           
         if (Input.GetMouseButton(0))
-        {  
-            
+        {   
             bm.Spawn(transform.position, bm.Plane == BulletPlane.XY ? transform.right : transform.forward);
-            
-            
         }
         
         

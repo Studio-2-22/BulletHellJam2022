@@ -32,8 +32,10 @@ public class LineController : MonoBehaviour
         }else{
             Debug.Log(other.name);
             if(other.tag == "Enemy"){
-                Destroy(other.gameObject);
+                //Destroy(other.gameObject);
+                other.gameObject.GetComponent<EnemyController>().EnemyTakeDamage(PlayerController.instance.lineDamage); 
             }
         }
+
     }
 }

@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 10f;
     public float maxSpeed = 20f;
     public float friction = 2f;
-
+    public float lineDamage = 1f; 
     private Rigidbody2D rb;
     private BulletCollider bc;
 

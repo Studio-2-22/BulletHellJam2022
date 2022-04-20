@@ -68,4 +68,13 @@ public class EnemyController : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+    public void EnemyTakeDamage(float damage)
+    {
+        hp -= damage;
+        healthBar.setHealth(hp, maxHp);
+        if (hp <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+    }
 }

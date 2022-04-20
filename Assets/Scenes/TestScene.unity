@@ -450,6 +450,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bm: {fileID: 1751742621}
   speed: 10
+  maxSpeed: 20
+  friction: 2
 --- !u!4 &61273337
 Transform:
   m_ObjectHideFlags: 0

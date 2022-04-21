@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
            
         if (Input.GetMouseButton(0))
         {   
-            bm.Spawn(transform.position, bm.Plane == BulletPlane.XY ? transform.right : transform.forward);
+            bm.Spawn(transform.position, bm.Plane == BulletPlane.XY ? -transform.up : transform.forward);
         }
         
         
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
         Vector3 dir = mousePos - transform.position;
 
         float z = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(z, Vector3.forward);
+        transform.rotation = Quaternion.AngleAxis(z-270f, Vector3.forward);
     }
 
     void FireEffects(){

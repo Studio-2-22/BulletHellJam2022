@@ -33,7 +33,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        
+        FacePlayer();
         float distanceFromPlayer =  Vector2.Distance(transform.position, playerTransform.position);
         if(distanceFromPlayer < detectionRange){
             
@@ -47,13 +47,13 @@ public class EnemyController : MonoBehaviour
             }
            
 
-            // if(distanceFromPlayer > hoverRange ){
-            //     rb.velocity = (playerTransform.position - transform.position).normalized * speed;
-            // }
-            // else{
-            //     rb.velocity = Vector2.zero;
-            //     return;
-            // }
+            if(distanceFromPlayer > hoverRange ){
+                rb.velocity = (playerTransform.position - transform.position).normalized * speed;
+            }
+            else{
+                rb.velocity = Vector2.zero;
+                return;
+            }
         }
     }
 
@@ -76,5 +76,15 @@ public class EnemyController : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+
+    void FacePlayer()
+    {
+        //turn the player to face the mouse
+       
+        Vector3 dir = PlayerController.instance.transform.position - transform.position;
+
+        float z = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(z-270f, Vector3.forward);
     }
 }

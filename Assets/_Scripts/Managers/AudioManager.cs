@@ -21,6 +21,11 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     public void PlaySFX(int index)
     {
         SFX[index].Play();

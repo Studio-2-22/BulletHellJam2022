@@ -1,7 +1,19 @@
 fileFormatVersion: 2
-guid: 861f9c7cd5349974eb490113ea1fad88
+guid: 51cfe3b59391cf040b19057d0a790241
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -7042840572480818491
+    second: GZaku 1_0
+  - first:
+      213: 8127312184100466206
+    second: GZaku 1_1
+  - first:
+      213: 1837831483076716181
+    second: GZaku 1_2
+  - first:
+      213: -601230429710089855
+    second: GZaku 1_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,7 +53,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -101,7 +113,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: GZaku 1_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 16
+        width: 10
+        height: 10
+      alignment: 9
+      pivot: {x: 0.7, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c2729b50ddc24e90800000000000000
+      internalID: -7042840572480818491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GZaku 1_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 9
+        height: 10
+      alignment: 9
+      pivot: {x: 0.44444445, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1e23000f530ac070800000000000000
+      internalID: 8127312184100466206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GZaku 1_2
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 5
+        width: 6
+        height: 11
+      alignment: 9
+      pivot: {x: 0.6666667, y: 0.72727275}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59621d12ff9418910800000000000000
+      internalID: 1837831483076716181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GZaku 1_3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 3
+        width: 7
+        height: 13
+      alignment: 9
+      pivot: {x: 0.42857146, y: 0.7692308}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18189f01c1008a7f0800000000000000
+      internalID: -601230429710089855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

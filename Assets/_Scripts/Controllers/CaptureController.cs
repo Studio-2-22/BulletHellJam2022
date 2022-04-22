@@ -40,22 +40,23 @@ public class CaptureController : MonoBehaviour
     void Update()
     {
         
-        if(Input.GetMouseButtonDown(1))
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             
             isDrawing = true;
             CreateLine();     
         }
         if(isDrawing){
-            if(Input.GetMouseButton(1))
+            if(Input.GetKey(KeyCode.Space))
             {
-                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                if(Vector2.Distance(mousePos, points[points.Count - 1]) > 0.3f)
+                //Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 playerPos = transform.position - -transform.up ;
+                if(Vector2.Distance(playerPos, points[points.Count - 1]) > 0.3f)
                 {
-                    UpdateLine(mousePos);
+                    UpdateLine(playerPos);
                 }
             }
-            if(Input.GetMouseButtonUp(1))
+            if(Input.GetKeyUp(KeyCode.Space))
             {
                 
                 Debug.Log("Let go"); 
@@ -76,10 +77,10 @@ public class CaptureController : MonoBehaviour
 
     private void CreateLine()
     {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 startPos =  transform.position - -transform.up ;
 
-        currentLineStart = Instantiate(lineStartPrefab, mousePos, Quaternion.identity);
-        currentLineHead = Instantiate(lineHeadPrefab, mousePos, Quaternion.identity);
+        currentLineStart = Instantiate(lineStartPrefab, startPos, Quaternion.identity);
+        currentLineHead = Instantiate(lineHeadPrefab, startPos, Quaternion.identity);
         currentLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity);
         currentLine.GetComponent<LineController>().lineStart = currentLineStart;
         currentLine.GetComponent<LineController>().lineHead = currentLineHead;
@@ -87,8 +88,8 @@ public class CaptureController : MonoBehaviour
         edgeCollider = currentLine.GetComponent<EdgeCollider2D>();
         polygonCollider = currentLine.GetComponent<PolygonCollider2D>();
         points.Clear();
-        points.Add(mousePos);
-        points.Add(mousePos);
+        points.Add(startPos);
+        points.Add(startPos);
         lineRenderer.SetPosition(0, points[0]);
         lineRenderer.SetPosition(1, points[1]);
         edgeCollider.points = points.ToArray();
@@ -143,14 +144,5 @@ public class CaptureController : MonoBehaviour
 
         //check if first point of line and last point of line are within a distance of 0.1f
         DestroyLine();
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.tag == "Enemy")
-        {
-            Destroy(other.gameObject);
-        }
-    }
-    
+    }    
 }

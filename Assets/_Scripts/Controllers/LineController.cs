@@ -9,8 +9,6 @@ public class LineController : MonoBehaviour
     public GameObject lineStart;
     public bool loopCompleted = false;
 
-
-
    private void OnTriggerEnter2D(Collider2D other)
     {
         
@@ -33,7 +31,7 @@ public class LineController : MonoBehaviour
             Debug.Log(other.name);
             if(other.tag == "Enemy"){
                 //Destroy(other.gameObject);
-                other.gameObject.GetComponent<EnemyController>().EnemyTakeDamage(PlayerController.instance.lineDamage); 
+                other.gameObject.GetComponent<EnemyController>().TakeDamage(PlayerController.instance.lineDamage); 
             }
         }
 

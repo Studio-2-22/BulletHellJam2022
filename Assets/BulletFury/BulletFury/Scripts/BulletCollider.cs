@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using BulletFury.Data;
 using Unity.Collections;
 using Unity.Jobs;
@@ -39,6 +41,13 @@ namespace BulletFury
         // ReSharper disable once InconsistentNaming
         [SerializeField] private BulletCollisionEvent OnCollide;
 
+        [SerializeField, Tooltip("Should the bullets bounce off this collider, rather than being immediately destroyed?")] 
+        private bool bounce;
+        [SerializeField, Tooltip("Make the bullets die earlier if they bounce - 0-1, as a percentage of total lifetime. If it's set to 0.5 and the lifetime is 10 seconds, the bullets will die 5 seconds earlier.")]
+        private float lifetimeLoss;
+        [SerializeField, Range(0, 1), Tooltip("How much momentum should the bullets keep? 0-1, as a percentage of current velocity. If it's set to 0.5, bullets will travel at half their remaining speed after bouncing.")]
+        private float bounciness;
+
         public BulletCollisionEvent OnCollideEvent => OnCollide;
         // cached job and job handle
         private BulletDistanceJob _bulletJobCircle;
@@ -48,16 +57,55 @@ namespace BulletFury
         
         private JobHandle _handle;
 
+        private Vector3 _triangleCentroid, _sideANorm, _sideBNorm, _sideCNorm;
+
         // an array of bullets
         private BulletContainer[] _bullets;
+        private Bounds _bounds;
 
         private static List<BulletCollider> _colliders;
+
+        public ColliderShape Shape => shape;
 
         private void Awake()
         {
             if (_colliders == null)
                 _colliders = new List<BulletCollider>();
             _colliders.Add(this);
+
+
+            if (shape == ColliderShape.Triangle)
+            {
+                var wPosA = LocalPointToWorld(pointA);
+                var wPosB = LocalPointToWorld(pointB);
+                var wPosC = LocalPointToWorld(pointC);
+
+                _triangleCentroid = (wPosA + wPosB + wPosC) / 3f;
+                
+                var sideA = wPosB - wPosA;
+                var midpointA = (wPosA + wPosB) / 2f;
+                _sideANorm = new Vector3(-sideA.y, sideA.x).normalized;
+                
+                if (Vector3.Dot(_sideANorm, midpointA - _triangleCentroid) < 0)
+                    _sideANorm = -_sideANorm;
+                
+                var sideB = wPosA - wPosC;
+                var midpointB = (wPosA + wPosC) / 2f;
+                _sideBNorm = new Vector3(-sideB.y, sideB.x).normalized;
+                
+                if (Vector3.Dot(_sideBNorm, midpointB - _triangleCentroid) < 0)
+                    _sideBNorm = -_sideBNorm;
+
+                var sideC = wPosC - wPosB;
+                var midpointC = (wPosC + wPosB) / 2f;
+                _sideCNorm = new Vector3(-sideC.y, sideC.x).normalized;
+                
+                if (Vector3.Dot(_sideCNorm, midpointC - _triangleCentroid) < 0)
+                    _sideCNorm = -_sideCNorm;
+            } else if (shape == ColliderShape.AABB || shape == ColliderShape.OBB)
+            {
+                _bounds = new Bounds(transform.position + center, Vector3.Scale(transform.localScale, size) /2f);
+            }
         }
 
         private void OnEnable()
@@ -115,7 +163,7 @@ namespace BulletFury
                     {
                         In = new NativeArray<BulletContainer>(_bullets, Allocator.TempJob),
                         Out = new NativeArray<BulletContainer>(_bullets, Allocator.TempJob),
-                        Distance = radius,
+                        Distance = radius * transform.localScale.x,
                         Position = transform.position + center
                     };
 
@@ -180,8 +228,6 @@ namespace BulletFury
                     _bulletJobOBB.BoxAxes.Dispose();
                 }else if (shape == ColliderShape.Triangle)
                 {
-                    var scaledSize = Vector3.Scale(transform.localScale, size);
-                    
                     _bulletJobTriangle = new BulletTriangleJob
                     {
                         In = new NativeArray<BulletContainer>(_bullets, Allocator.TempJob),
@@ -206,14 +252,114 @@ namespace BulletFury
                 // loop through the bullets, if there was a collision this frame - tell the bullet manager and anything else that needs to know
                 for (int i = 0; i < _bullets.Length; i++)
                 {
-                    if (_bullets[i].Dead == 0 && _bullets[i].Collided == 1 && _bullets[i].CurrentSize > 0)
+                    if (_bullets[i].Dead == 0 && _bullets[i].Collided == 1 && _bullets[i].BouncedThisFrame == 0 && _bullets[i].CurrentSize > 0)
                     {
-                        if (destroyBullet)
+                        //if (Shape == ColliderShape.OBB)
+                          //  Debug.DrawLine(_bullets[i].Position, _bullets[i].Position + _bullets[i].Up, Color.green, 1);
+
+                        if (destroyBullet && !bounce)
+                        {
                             manager.HitBullet(i);
+                        }
+                        if (bounce)
+                        {
+                            var normal = Vector3.zero;
+                            switch (shape)
+                            {
+                                case ColliderShape.Sphere:
+                                    normal = ComputeSphereNormal(_bullets[i].Position);
+                                    break;
+                                case ColliderShape.AABB:
+                                    normal = ComputeAABBNormal(_bullets[i].Position);
+                                    break;
+                                case ColliderShape.OBB:
+                                    normal = ComputeOBBNormal(_bullets[i].Position);
+                                    break;
+                                case ColliderShape.Triangle:
+                                    normal = ComputeTriangleNormal(_bullets[i].Position);
+                                    break;
+                                default:
+                                    throw new ArgumentOutOfRangeException();
+                            }
+
+                            manager.BounceBullet(i, normal, bounciness, lifetimeLoss);
+                        }
+
                         OnCollide?.Invoke(_bullets[i], this);
                     }
                 }
             }
+        }
+
+        public Vector3 ComputeTriangleNormal(Vector3 point)
+        {
+            var sqDistA = Vector3.SqrMagnitude(point - pointA);
+            var sqDistB = Vector3.SqrMagnitude(point - pointB);
+            var sqDistC = Vector3.SqrMagnitude(point - pointC);
+
+
+            if (sqDistA <= sqDistB && sqDistA <= sqDistC)
+                return _sideCNorm;
+            
+            if (sqDistB <= sqDistA && sqDistB <= sqDistC)
+                return _sideBNorm;
+            
+            return _sideANorm;
+        }
+
+        public Vector3 ComputeAABBNormal(Vector3 point)
+        {
+            var scale = Vector3.Scale(transform.localScale, size);
+            
+            var dir = point - (transform.position + center);
+
+            dir.x = (Mathf.InverseLerp(-scale.x / 2f, scale.x / 2f, dir.x) - 0.5f) * 2;
+            dir.y = (Mathf.InverseLerp(-scale.y / 2f, scale.y / 2f, dir.y) - 0.5f) * 2;
+            dir.z = (Mathf.InverseLerp(-scale.z / 2f, scale.z / 2f, dir.z) - 0.5f) * 2;
+            
+            return new []
+            {
+                 Vector3.right,
+                -Vector3.right,
+                 Vector3.up,
+                 -Vector3.up,
+                 Vector3.forward,
+                 -Vector3.forward
+            }.OrderByDescending(v => Vector3.Dot(dir, v)).First();
+        }
+
+        public Vector3 ComputeOBBNormal(Vector3 point)
+        {
+            var scale = Vector3.Scale(transform.localScale, size);
+            
+            var dir = (point - (transform.position + center));
+
+            dir = Quaternion.Inverse(transform.rotation) * dir;
+
+            dir.x = (Mathf.InverseLerp(-scale.x / 2f, scale.x / 2f, dir.x) - 0.5f) * 2;
+            dir.y = (Mathf.InverseLerp(-scale.y / 2f, scale.y / 2f, dir.y) - 0.5f) * 2;
+            dir.z = (Mathf.InverseLerp(-scale.z / 2f, scale.z / 2f, dir.z) - 0.5f) * 2;
+            
+            dir = transform.rotation * dir;
+            
+
+            return new []
+            {
+                transform.rotation * Vector3.right,
+                transform.rotation * -Vector3.right,
+                transform.rotation * Vector3.up,
+                transform.rotation * -Vector3.up,
+                transform.rotation * Vector3.forward,
+                transform.rotation * -Vector3.forward
+            }.OrderByDescending(v => Vector3.Dot(dir, v)).First();
+        }
+
+        public Vector3 ComputeSphereNormal(Vector3 point)
+        {
+            var dx = point.x - transform.position.x;
+            var dy = point.y - transform.position.y;
+
+            return new Vector3(dx, dy);
         }
 
         public void AddManagerToBullets(BulletManager manager)
@@ -252,9 +398,13 @@ namespace BulletFury
         {
             Gizmos.color = Color.green;
             if (shape == ColliderShape.Sphere)
-                Gizmos.DrawWireSphere(transform.position + center, radius);
+                Gizmos.DrawWireSphere(transform.position + center, radius * transform.localScale.x);
             else if (shape == ColliderShape.AABB)
+            {
                 Gizmos.DrawWireCube(transform.position + center, Vector3.Scale(transform.localScale, size));
+                
+                
+            }
             else if (shape == ColliderShape.OBB)
             {
                 var matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
@@ -269,6 +419,38 @@ namespace BulletFury
                 Gizmos.DrawLine(wPosA, wPosB);
                 Gizmos.DrawLine(wPosB, wPosC);
                 Gizmos.DrawLine(wPosC, wPosA);
+                _triangleCentroid = (wPosA + wPosB + wPosC) / 3f;
+
+                var sideA = wPosB - wPosA;
+                var midpointA = (wPosA + wPosB) / 2f;
+                _sideANorm = new Vector3(-sideA.y, sideA.x).normalized;
+                var isPointingIn = Vector3.Dot(_sideANorm, midpointA - _triangleCentroid);
+                
+                if (isPointingIn < 0)
+                    _sideANorm = -_sideANorm;
+
+                Gizmos.DrawLine(midpointA, midpointA + _sideANorm);
+                
+                var sideB = wPosA - wPosC;
+                var midpointB = (wPosA + wPosC) / 2f;
+                _sideBNorm = new Vector3(-sideB.y, sideB.x).normalized;
+                isPointingIn = Vector3.Dot(_sideBNorm, midpointB - _triangleCentroid);
+                
+                if (isPointingIn < 0)
+                    _sideBNorm = -_sideBNorm;
+                
+                Gizmos.DrawLine(midpointB, midpointB + _sideBNorm);
+                
+                var sideC = wPosC - wPosB;
+                var midpointC = (wPosC + wPosB) / 2f;
+                _sideCNorm = new Vector3(-sideC.y, sideC.x).normalized;
+                isPointingIn = Vector3.Dot(_sideCNorm, midpointC - _triangleCentroid);
+                
+                if (isPointingIn < 0)
+                    _sideCNorm = -_sideCNorm;
+                
+                
+                Gizmos.DrawLine(midpointC, midpointC + _sideCNorm);
             }
         }
 

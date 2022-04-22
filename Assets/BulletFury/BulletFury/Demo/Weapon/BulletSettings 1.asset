@@ -17,15 +17,16 @@ MonoBehaviour:
   plane: 0
   waitToStart: 0
   timeToPlayWhileWaiting: 0.25
-  lifetime: 5
+  lifetime: 3
   speed: 3
   moveWithTransform: 0
+  rotateWithTransform: 0
   damage: 1
-  size: 0.25
+  size: 1
   colliderSize: 0.5
   angularVelocity: 0
-  startColor: {r: 0.850945, g: 0, b: 1, a: 1}
-  useColorOverTime: 1
+  startColor: {r: 0.77265173, g: 0.11037882, b: 1.7568629, a: 1}
+  useColorOverTime: 0
   colorCurveUsage: 1
   colorCurveTime: 1
   colorOverTime:
@@ -120,9 +121,9 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0.5
-      inSlope: -2
-      outSlope: -2
+      value: 0
+      inSlope: -4
+      outSlope: -4
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334

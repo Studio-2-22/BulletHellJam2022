@@ -164,7 +164,6 @@ namespace BulletFury.Data
         {
             bullet.Lifetime = lifetime;
             bullet.AngularVelocity = angularVelocity;
-            bullet.Speed = speed;
             bullet.CurrentSpeed = speed;
             bullet.StartSize = size;
             bullet.CurrentSize = bullet.StartSize;

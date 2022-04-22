@@ -39,6 +39,16 @@ namespace BulletFury
             container.Position += container.Velocity * DeltaTime +
                                   container.Force * DeltaTime;
 
+            if (container.BouncedThisFrame == 1)
+            {
+                container.BounceTime += DeltaTime;
+                if (container.BounceTime > 0.05f)
+                {
+                    container.BouncedThisFrame = 0;
+                    container.Collided = 0;
+                }
+            }
+            
            
             container.Rotation =  math.normalize(container.Rotation);
             Out[index] = container;

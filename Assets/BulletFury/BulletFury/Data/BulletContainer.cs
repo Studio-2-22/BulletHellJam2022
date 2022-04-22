@@ -33,12 +33,13 @@ namespace BulletFury.Data
         public byte EndOfLife;
         public float Lifetime;
         public float AngularVelocity;
-        public float Speed;
         public float CurrentSpeed;
         public float3 Velocity;
         public float3 Force;
         public float Damage;
         public byte TrackObject;
         public Quaternion Direction;
+        public byte BouncedThisFrame;
+        public float BounceTime;
     }
 }

@@ -45,11 +45,7 @@ namespace BulletFury
         [SerializeField] private string seed;
         [SerializeField] private bool randomiseSeedOnAwake = true;
 
-        private Material _previewMat;
-        
-        private Squirrel3 _rnd;
-
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         public bool playingEditorAnimation;
         #endif
         
@@ -76,6 +72,8 @@ namespace BulletFury
         #endregion
 
         #region Private Fields
+        private Material _previewMat;
+        private Squirrel3 _rnd;
         private BulletContainer[] _bullets;
         private bool _hasBullets;
         private BulletContainer _currentBullet;
@@ -89,9 +87,11 @@ namespace BulletFury
         private Vector3 _previousPos, _previousRot;
         private bool _enabled = false;
         private static List<BulletManager> _managers;
-        
+        private bool _activeNativeArrays = false;
         #endregion
 
+        public int NumActiveBullets => currentActiveBullets;
+        
         /// <summary>
         /// Unity function, happens when the object is first loaded.
         /// Initialise the data.
@@ -269,7 +269,7 @@ namespace BulletFury
             
             // draw all the meshes
             // n.b. this is why we can only have 1023 bullets per spawner
-            buffer.DrawMeshInstanced(bulletSettings.Mesh, 0, bulletSettings.Material, 0, _matrices, _bullets.Length, _materialPropertyBlock);
+            buffer.DrawMeshInstanced(bulletSettings.Mesh, 0, bulletSettings.Material, 0, _matrices, maxBullets, _materialPropertyBlock);
             
             // can't have two objects with the same priority, so keep increasing it til we find one that fits
             var priority = drawPriority;
@@ -302,6 +302,7 @@ namespace BulletFury
                 In = new NativeArray<BulletContainer>(_bullets, Allocator.TempJob),
                 Out = new NativeArray<BulletContainer>(_bullets, Allocator.TempJob)
             };
+            _activeNativeArrays = true;
 
             // start the job
             _handle = _bulletJob.Schedule(_bullets.Length, 256);
@@ -324,6 +325,7 @@ namespace BulletFury
             // dispose the native arrays 
             _bulletJob.In.Dispose();
             _bulletJob.Out.Dispose();
+            _activeNativeArrays = false;
 
             for (int i = _bullets.Length - 1; i >= 0; --i)
             {
@@ -336,12 +338,22 @@ namespace BulletFury
             }
         }
 
+        private void OnDestroy()
+        {
+            if (!_activeNativeArrays) return;
+            // make sure the job is finished this frame
+            _handle.Complete();
+            // dispose the native arrays 
+            _bulletJob.In.Dispose();
+            _bulletJob.Out.Dispose();
+        }
+
         public bool CheckBulletsRemaining()
         {
             if (_bullets == null)
                 return false;
             var j = 0;
-            // find a bullet that isn't alive and replace it with this one
+            
             for (j = 0; j < _bullets.Length; ++j)
             {
                 if (_bullets[j].Dead != 0) break;
@@ -363,6 +375,100 @@ namespace BulletFury
             if (gameObject.activeInHierarchy)
                 // start the spawning - it's a coroutine so we can do burst shots over time 
                 StartCoroutine(SpawnIE(position, forward));
+        }
+
+        public void Spawn(Transform obj)
+        {
+            var hasBulletsLeft = CheckBulletsRemaining();
+            
+            // don't spawn a bullet if we haven't reached the correct fire rate
+            if (_currentTime < spawnSettings.FireRate || !hasBulletsLeft|| !_enabled)
+                return;
+            // reset the current time
+            _currentTime = 0;
+            
+            if (gameObject.activeInHierarchy)
+                // start the spawning - it's a coroutine so we can do burst shots over time 
+                StartCoroutine(SpawnIE(obj));
+        }
+
+        private IEnumerator SpawnIE(Transform obj)
+        {
+            yield return new WaitForEndOfFrame();
+            OnWeaponFired?.Invoke();
+            // keep a list of positions and rotations, so we can update the bullets all at once
+            var positions = new List<Vector3>();
+            var rotations = new List<Quaternion>();
+            for (int burstNum = 0; burstNum < spawnSettings.BurstCount; ++burstNum)
+            {
+                // make sure the positions and rotations are clear before doing anything
+                positions.Clear();
+                rotations.Clear();
+                // spawn the bullets
+                spawnSettings.Spawn((point, dir) =>
+                {
+                    // for every point that the spawner gets
+                    
+                    // set up the rotation 
+                    if (Plane == BulletPlane.XY)
+                    {
+                        rotations.Add(Quaternion.LookRotation(Vector3.forward, dir) *
+                                      Quaternion.LookRotation(Vector3.forward, Plane == BulletPlane.XY ? obj.up : obj.forward));
+                        
+                        positions.Add(obj.position + Quaternion.LookRotation(Vector3.forward, Plane == BulletPlane.XY ? obj.up : obj.forward) * point);
+                    }
+                    else
+                    {
+                        var rotation = dir == Vector2.zero ? Quaternion.identity : Quaternion.LookRotation(new Vector3(dir.x, 0, dir.y));
+                        // rotate it by the direction the object is facing
+                        var y =rotation.eulerAngles.y;
+                        rotation.SetLookRotation(Quaternion.Euler(0, y, 0) * (Plane == BulletPlane.XY ? obj.up : obj.forward));
+                        // add it to the list
+                        rotations.Add(rotation);
+                        // grab the position, rotated by the direction the object is facing
+                        var pos = obj.position + (Quaternion.LookRotation(Plane == BulletPlane.XY ? obj.up : obj.forward) * new Vector3(point.x, 0, point.y));
+                        // at the position to the list
+                        positions.Add(pos);
+                    }
+                }, _rnd);
+                
+                // for every bullet we found
+                for (int i = 0; i < positions.Count; i++)
+                {
+                    // create a new container that isn't dead, at the position and rotation we found with the spawner
+                    var newContainer = new BulletContainer
+                    {
+                        Dead = 0,
+                        Position = positions[i],
+                        Rotation = rotations[i],
+                        Direction = rotations[i],
+                        Id = Guid.NewGuid().GetHashCode()
+                    };
+                    
+                    // initialise the bullet
+                    bulletSettings.Init(ref newContainer);
+                    
+                    var j = 0;
+                    // find a bullet that isn't alive and replace it with this one
+                    for (j = 0; j < _bullets.Length; ++j)
+                    {
+                        if (_bullets[j].Dead == 0) continue;
+                        _bullets[j] = newContainer;
+                        break;
+                    }
+                    #if UNITY_EDITOR
+                    if (j >= _bullets.Length)
+                        Debug.LogWarning($"Tried to spawn too many bullets on manager {name}, didn't spawn one.");
+                    #endif
+                    
+                    if (j < _bullets.Length)
+                        OnBulletSpawned?.Invoke(j, _bullets[j]);
+                }
+                
+                // wait a little bit before doing the next burst
+                yield return new WaitForSeconds(spawnSettings.BurstDelay);
+                yield return new WaitForEndOfFrame();
+            }
         }
         
         private IEnumerator SpawnIE(Vector3 position, Vector3 forward)
@@ -477,9 +583,25 @@ namespace BulletFury
         {
             if (_bullets[idx].Dead == 1) return;
             _bullets[idx].Dead = 1;
-            
             OnBulletDied?.Invoke(idx, _bullets[idx], false);
             OnBulletDiedEvent?.Invoke(_bullets[idx], false);
+        }
+
+        public void BounceBullet(int idx, Vector3 normal, float bounciness, float lifetimeLoss)
+        {
+            if (_bullets[idx].Dead == 1) return;
+            
+            _bullets[idx].CurrentSpeed *= bounciness;
+            _bullets[idx].CurrentLifeSeconds += lifetimeLoss * _bullets[idx].Lifetime;
+            _bullets[idx].BouncedThisFrame = 1;
+            _bullets[idx].BounceTime = 0;
+
+            var bulletForward = Plane == BulletPlane.XY ? _bullets[idx].Up : _bullets[idx].Forward;
+            _bullets[idx].Rotation = Plane == BulletPlane.XY
+                ? Quaternion.LookRotation(Vector3.forward, Vector3.Reflect(bulletForward, normal))
+                : Quaternion.LookRotation(Vector3.Reflect(bulletForward, normal), Vector3.up);
+
+            _bullets[idx].RotationChangedThisFrame = 1;
         }
 
         public BulletContainer GetBullet(int idx)

@@ -40,14 +40,14 @@ public class CaptureController : MonoBehaviour
     void Update()
     {
         
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetMouseButtonDown(1))
         {
             
             isDrawing = true;
             CreateLine();     
         }
         if(isDrawing){
-            if(Input.GetKey(KeyCode.Space))
+            if(Input.GetMouseButton(1))
             {
                 //Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector2 playerPos = transform.position - -transform.up ;
@@ -56,7 +56,7 @@ public class CaptureController : MonoBehaviour
                     UpdateLine(playerPos);
                 }
             }
-            if(Input.GetKeyUp(KeyCode.Space))
+            if(Input.GetMouseButtonUp(1))
             {
                 
                 Debug.Log("Let go"); 
@@ -80,7 +80,7 @@ public class CaptureController : MonoBehaviour
         Vector2 startPos =  transform.position - -transform.up ;
         
         currentLineStart = Instantiate(lineStartPrefab, startPos, Quaternion.identity);
-        currentLineHead = Instantiate(lineHeadPrefab, startPos, Quaternion.identity);
+        currentLineHead = Instantiate(lineHeadPrefab, startPos, transform.rotation, transform);
         currentLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity);
         currentLine.GetComponent<LineController>().lineStart = currentLineStart;
         currentLine.GetComponent<LineController>().lineHead = currentLineHead;

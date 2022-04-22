@@ -17,8 +17,7 @@ public class LineController : MonoBehaviour
             if(other.tag == "LineHead"){
                 
                 if(CaptureController.instance.hasLeftStart && !CaptureController.instance.isResetting){
-                    Debug.Log("LineHead cancelled");
-                    CaptureController.instance.CancelLine();
+                    CaptureController.instance.ResetLine();
                 }
                 
             }else{

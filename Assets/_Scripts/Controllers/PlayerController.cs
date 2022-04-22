@@ -42,14 +42,17 @@ public class PlayerController : BulletUnit
                  rb.velocity = rb.velocity.normalized * maxSpeed;
              } 
         }
-        rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, friction * Time.deltaTime);
+        if(!boosting ){
+            rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, friction * Time.deltaTime);
+        }
+            
         
 
-        if(Input.GetMouseButton(1)){
+        if(Input.GetKey(KeyCode.Space)){
             Boost();
         }
 
-        if(Input.GetMouseButtonUp(1)){
+        if(Input.GetKeyUp(KeyCode.Space)){
             boosting = false;
         }
            

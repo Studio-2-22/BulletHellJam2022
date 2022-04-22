@@ -245,6 +245,7 @@ MonoBehaviour:
   lineHeadPrefab: {fileID: 3194575540632107723, guid: 7bb5f043ace38fb40af0a87e6978e669, type: 3}
   currentLine: {fileID: 0}
   loopCounter: 0
+  containsEnemy: 0
   isDrawing: 0
   hasLeftStart: 0
   isResetting: 0
@@ -271,7 +272,7 @@ MonoBehaviour:
   bc: {fileID: 0}
   rb: {fileID: 0}
   lineDamage: 5
-  boostFactor: 3
+  boostFactor: 1.5
 --- !u!4 &61273337
 Transform:
   m_ObjectHideFlags: 0
@@ -1395,7 +1396,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 31.4
+  orthographic size: 25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

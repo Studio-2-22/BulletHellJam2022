@@ -21,15 +21,14 @@ public class LineController : MonoBehaviour
                 }
                 
             }else{
-                Debug.Log("Cancelled");
-                Debug.Log(other.tag);
+                // Debug.Log("Cancelled");
+                // Debug.Log(other.tag);
                 CaptureController.instance.CancelLine();
             }
            
         }else{
-            Debug.Log(other.name);
             if(other.tag == "Enemy"){
-                //Destroy(other.gameObject);
+                CaptureController.instance.containsEnemy = true;
                 other.gameObject.GetComponent<EnemyController>().TakeDamage(PlayerController.instance.lineDamage); 
             }
         }

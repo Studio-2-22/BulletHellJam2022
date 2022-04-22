@@ -21,6 +21,8 @@ public class CaptureController : MonoBehaviour
 
     public int loopCounter = 0;
 
+    public bool containsEnemy = false;
+
     public bool isDrawing;
     public bool hasLeftStart;
 
@@ -47,6 +49,12 @@ public class CaptureController : MonoBehaviour
             CreateLine();     
         }
         if(isDrawing){
+            if(containsEnemy){
+                PlayLoopSound();
+                loopCounter++;
+                containsEnemy = false;
+                Debug.Log("loopCounter: " + loopCounter);
+            }
             if(Input.GetMouseButton(1))
             {
                 //Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -72,6 +80,8 @@ public class CaptureController : MonoBehaviour
             CancelLine();
             
         }
+
+
        
     }
 
@@ -114,13 +124,12 @@ public class CaptureController : MonoBehaviour
 
     public void ResetLine() {
         isResetting = true;
-        AudioManager.instance.PlayeEffect(4); // plays the launch sound because there is not better sound
-        loopCounter++;
-        Debug.Log("loopCounter: " + loopCounter);
+        
         currentLine.GetComponent<LineController>().loopCompleted = true;
         polygonCollider.points = points.ToArray();
         DestroyLine();
         CreateLine();
+        
         isResetting = false;
     }
     public void DestroyLine() {
@@ -145,5 +154,17 @@ public class CaptureController : MonoBehaviour
 
         //check if first point of line and last point of line are within a distance of 0.1f
         DestroyLine();
+    }
+
+    void PlayLoopSound() {
+        if(loopCounter < 5){
+            float pitch = 0.5f + 0.5f * loopCounter / 4f;
+            AudioManager.instance.PlayePitchedEffect(4, pitch);
+        }else{
+            AudioManager.instance.PlayeEffect(4);
+        }
+        
+        
+       
     }    
 }

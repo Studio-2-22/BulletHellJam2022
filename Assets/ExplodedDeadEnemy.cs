@@ -12,7 +12,6 @@ public class ExplodedDeadEnemy : MonoBehaviour
         Rigidbody2D[] children = GetComponentsInChildren<Rigidbody2D>();
         foreach (Rigidbody2D child in children)
         {
-            Debug.Log("child: " + child.name);
             Vector2 direction = child.transform.localPosition.normalized;
             child.AddForce(direction * 100f);
         }
@@ -25,7 +24,6 @@ public class ExplodedDeadEnemy : MonoBehaviour
     {
         yield return new WaitForSeconds(destroyTime);
         Destroy(gameObject);
-        Debug.Log("Destroyed");
     }
 
     

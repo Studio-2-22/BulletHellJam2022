@@ -48,6 +48,10 @@ public class PlayerController : BulletUnit
         if(Input.GetMouseButton(1)){
             Boost();
         }
+
+        if(Input.GetMouseButtonUp(1)){
+            boosting = false;
+        }
            
         if (Input.GetMouseButton(0))
         {   

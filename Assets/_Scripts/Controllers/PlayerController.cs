@@ -41,9 +41,9 @@ public class PlayerController : BulletUnit
              if(rb.velocity.magnitude > maxSpeed && !boosting){
                  rb.velocity = rb.velocity.normalized * maxSpeed;
              } 
-        }else{
-            rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, friction * Time.deltaTime);
         }
+        rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, friction * Time.deltaTime);
+        
 
         if(Input.GetMouseButton(1)){
             Boost();

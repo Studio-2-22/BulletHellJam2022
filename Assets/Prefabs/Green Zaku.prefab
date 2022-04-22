@@ -137,7 +137,7 @@ RectTransform:
   m_GameObject: {fileID: 6328849908601482824}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.169372, y: 0.4869276, z: 0.169372}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6328849907460654455}
   - {fileID: 6328849908275910367}
@@ -465,6 +465,7 @@ MonoBehaviour:
   maxSpeed: 20
   friction: 2
   deathPrefab: {fileID: 2688619256983356344, guid: c7dcf2287105c34488ef37493488aa9c, type: 3}
+  DeathSoundIndex: 0
   bm: {fileID: 0}
   bc: {fileID: 0}
   rb: {fileID: 0}

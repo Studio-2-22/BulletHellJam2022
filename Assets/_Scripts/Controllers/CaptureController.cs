@@ -78,7 +78,7 @@ public class CaptureController : MonoBehaviour
     private void CreateLine()
     {
         Vector2 startPos =  transform.position - -transform.up ;
-
+        
         currentLineStart = Instantiate(lineStartPrefab, startPos, Quaternion.identity);
         currentLineHead = Instantiate(lineHeadPrefab, startPos, Quaternion.identity);
         currentLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity);
@@ -94,6 +94,7 @@ public class CaptureController : MonoBehaviour
         lineRenderer.SetPosition(1, points[1]);
         edgeCollider.points = points.ToArray();
         hasLeftStart = false;
+        AudioManager.instance.PlayeEffect(5);
     }
 
     private void UpdateLine(Vector2 newPoint) {
@@ -113,7 +114,7 @@ public class CaptureController : MonoBehaviour
 
     public void ResetLine() {
         isResetting = true;
-        
+        AudioManager.instance.PlayeEffect(4); // plays the launch sound because there is not better sound
         loopCounter++;
         Debug.Log("loopCounter: " + loopCounter);
         currentLine.GetComponent<LineController>().loopCompleted = true;

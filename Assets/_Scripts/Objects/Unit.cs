@@ -11,6 +11,7 @@ public class Unit : MonoBehaviour
     public float maxSpeed = 20f;
     public float friction = 2f;
     public GameObject deathPrefab;
+    public int DeathSoundIndex = 0;//index of enemy death sound in AudioManager
 
     public void TakeDamage(float damage)
     {
@@ -23,6 +24,7 @@ public class Unit : MonoBehaviour
 
     public  void KillUnit(){
         gameObject.SetActive(false);
+        AudioManager.instance.PlayeEffect(DeathSoundIndex);
         if(deathPrefab != null){
             Instantiate(deathPrefab, transform.position, transform.rotation);
         }

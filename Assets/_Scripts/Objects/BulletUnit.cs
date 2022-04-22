@@ -29,6 +29,7 @@ public class BulletUnit : Unit
     }
 
     public void Shoot(){
+        AudioManager.instance.PlayeEffect(3); // index 3 is the shoot sound
         bm.Spawn(transform.position, -transform.up);
     }
 

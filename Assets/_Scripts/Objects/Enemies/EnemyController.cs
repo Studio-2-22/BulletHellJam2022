@@ -22,10 +22,4 @@ public class EnemyController : BulletUnit
         playerTransform = PlayerController.instance.transform;
         healthBar.setHealth(hp, maxHp);
     }
-
-    // Update is called once per frame
-    void LateUpdate()
-    {
-       
-    }
 }

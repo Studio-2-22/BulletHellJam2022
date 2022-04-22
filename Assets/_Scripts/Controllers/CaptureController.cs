@@ -57,11 +57,11 @@ public class CaptureController : MonoBehaviour
             }
             if(Input.GetMouseButton(1))
             {
-                //Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector2 playerPos = transform.position - -transform.up ;
-                if(Vector2.Distance(playerPos, points[points.Count - 1]) > 0.3f)
+                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                //Vector2 playerPos = transform.position - -transform.up ;
+                if(Vector2.Distance(mousePos, points[points.Count - 1]) > 0.3f)
                 {
-                    UpdateLine(playerPos);
+                    UpdateLine(mousePos);
                 }
             }
             if(Input.GetMouseButtonUp(1))
@@ -87,7 +87,7 @@ public class CaptureController : MonoBehaviour
 
     private void CreateLine()
     {
-        Vector2 startPos =  transform.position - -transform.up ;
+        Vector2 startPos =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
         currentLineStart = Instantiate(lineStartPrefab, startPos, Quaternion.identity);
         currentLineHead = Instantiate(lineHeadPrefab, startPos, transform.rotation, transform);

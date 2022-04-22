@@ -273,6 +273,10 @@ MonoBehaviour:
   rb: {fileID: 0}
   lineDamage: 5
   boostFactor: 1.5
+  dashSpeed: 5
+  startDashTime: 0
+  buttonTimer: 0.4
+  buttonCount: 0
 --- !u!4 &61273337
 Transform:
   m_ObjectHideFlags: 0
@@ -325,6 +329,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  bounce: 0
+  lifetimeLoss: 0
+  bounciness: 0
 --- !u!212 &61273339
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -512,6 +519,9 @@ MonoBehaviour:
   OnCollide:
     m_PersistentCalls:
       m_Calls: []
+  bounce: 0
+  lifetimeLoss: 0
+  bounciness: 0
 --- !u!1 &310531333
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,6 +918,9 @@ MonoBehaviour:
   OnCollide:
     m_PersistentCalls:
       m_Calls: []
+  bounce: 0
+  lifetimeLoss: 0
+  bounciness: 0
 --- !u!1 &697258933
 GameObject:
   m_ObjectHideFlags: 0
@@ -1735,6 +1748,9 @@ MonoBehaviour:
   OnCollide:
     m_PersistentCalls:
       m_Calls: []
+  bounce: 0
+  lifetimeLoss: 0
+  bounciness: 0
 --- !u!1 &1422371114
 GameObject:
   m_ObjectHideFlags: 0
@@ -2165,6 +2181,9 @@ MonoBehaviour:
   OnCollide:
     m_PersistentCalls:
       m_Calls: []
+  bounce: 0
+  lifetimeLoss: 0
+  bounciness: 0
 --- !u!1001 &118311922934453036
 PrefabInstance:
   m_ObjectHideFlags: 0

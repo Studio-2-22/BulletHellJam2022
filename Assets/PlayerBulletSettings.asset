@@ -22,7 +22,7 @@ MonoBehaviour:
   moveWithTransform: 0
   rotateWithTransform: 0
   damage: 1
-  size: 0.45
+  size: 1
   colliderSize: 1
   angularVelocity: 0
   startColor: {r: 4, g: 0.8, b: 0, a: 1}

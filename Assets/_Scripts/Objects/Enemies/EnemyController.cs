@@ -12,7 +12,7 @@ public class EnemyController : BulletUnit
     public float detectionRange = 50f;
     public float hoverRange = 15f;
     public float shootDelay = 1f;
-    [HideInInspector]
+    [HideInInspector]   
     public Transform playerTransform;
 
     // Start is called before the first frame update
@@ -22,4 +22,16 @@ public class EnemyController : BulletUnit
         playerTransform = PlayerController.instance.transform;
         healthBar.setHealth(hp, maxHp);
     }
+
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        healthBar.setHealth(hp, maxHp);
+    }
+
+    void OnEnable(){
+        hp = maxHp;
+    }
+
+    
 }

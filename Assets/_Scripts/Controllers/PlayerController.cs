@@ -55,7 +55,7 @@ public class PlayerController : BulletUnit
            
         if (Input.GetMouseButton(0))
         {   
-            Shoot();
+             bm.Spawn(transform.position, -transform.up);
         }
     }
 

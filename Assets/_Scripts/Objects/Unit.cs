@@ -13,7 +13,7 @@ public class Unit : MonoBehaviour
     public GameObject deathPrefab;
     public int DeathSoundIndex = 0;//index of enemy death sound in AudioManager
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         hp -= damage;
         if (hp <= 0)

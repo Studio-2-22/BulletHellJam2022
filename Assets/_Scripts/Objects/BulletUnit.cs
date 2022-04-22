@@ -28,11 +28,15 @@ public class BulletUnit : Unit
 
     }
 
-    public void Shoot(){
-        AudioManager.instance.PlayeEffect(3); // index 3 is the shoot sound
+    public virtual void Shoot(){
         bm.Spawn(transform.position, -transform.up);
     }
 
-
+  public void OnBulletSpawned(int x, BulletContainer bc)
+  {
+    Debug.Log("x: " + x);
+    Debug.Log("bc: " + bc);
+    AudioManager.instance.PlayeEffect(3); // index 3 is the shoot sound
+  }
     
 }

@@ -61,7 +61,7 @@ public class PlayerController : BulletUnit
 
             if (buttonTimer > 0 && buttonCount == 1)
             {
-                Dash();
+                Dash(direction);
                 buttonCount = 0; 
                 boosting = false;
             } 
@@ -77,12 +77,12 @@ public class PlayerController : BulletUnit
         }
     }
 
-    void Dash(){
+    void Dash(Vector2 direction){
         boosting = true;
         //rb.AddForce(-transform.up * boostFactor * movementSpeed);
         ////StartCoroutine(BoostCooldown());
         
-        rb.velocity = rb.velocity + (-(Vector2)transform.up * dashSpeed * movementSpeed);
+        rb.velocity = rb.velocity + (direction * dashSpeed * movementSpeed);
 
 
         

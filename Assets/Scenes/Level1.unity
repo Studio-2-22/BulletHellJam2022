@@ -265,7 +265,7 @@ MonoBehaviour:
   hp: 0
   movementSpeed: 15
   maxSpeed: 30
-  friction: 0.3
+  friction: 0
   deathPrefab: {fileID: 0}
   DeathSoundIndex: 1
   bm: {fileID: 1751742621}
@@ -273,7 +273,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   lineDamage: 5
   boostFactor: 1.5
-  dashSpeed: 5
+  dashSpeed: 250
   startDashTime: 0
   buttonTimer: 0.4
   buttonCount: 0

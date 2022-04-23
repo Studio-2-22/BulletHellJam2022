@@ -104,7 +104,7 @@ public class CaptureController : MonoBehaviour
         lineRenderer.SetPosition(1, points[1]);
         edgeCollider.points = points.ToArray();
         hasLeftStart = false;
-        AudioManager.instance.PlayeEffect(5);
+        AudioManager.instance.PlayEffect(5);
     }
 
     private void UpdateLine(Vector2 newPoint) {
@@ -157,13 +157,14 @@ public class CaptureController : MonoBehaviour
     }
 
     void PlayLoopSound() {
-        if(loopCounter < 5){
-            float pitch = 0.5f + 0.5f * loopCounter / 4f;
-            AudioManager.instance.PlayePitchedEffect(4, pitch);
-        }else{
-            AudioManager.instance.PlayeEffect(4);
-        }
-        
+        //if(loopCounter < 5){
+        //    float pitch = 0.5f + 0.5f * loopCounter / 4f;
+        //    AudioManager.instance.PlayPitchedEffect(4, pitch);
+        //}else{
+        //    AudioManager.instance.PlayEffect(4);
+        //}
+
+        AudioManager.instance.PlayPitchedEffect(4, loopCounter / 5); 
         
        
     }    

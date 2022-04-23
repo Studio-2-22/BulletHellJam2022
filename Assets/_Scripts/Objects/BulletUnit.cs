@@ -34,7 +34,7 @@ public class BulletUnit : Unit
 
   public void OnBulletSpawned(int x, BulletContainer bc)
   {
-    AudioManager.instance.PlayeEffect(3); // index 3 is the shoot sound
+    AudioManager.instance.PlayEffect(3); // index 3 is the shoot sound
   }
     
 }

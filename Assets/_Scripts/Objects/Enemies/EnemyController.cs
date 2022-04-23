@@ -12,13 +12,15 @@ public class EnemyController : BulletUnit
     public float detectionRange = 50f;
     public float hoverRange = 15f;
     public float shootDelay = 1f;
+    public bool isStunned = false;
+
     [HideInInspector]   
     public Transform playerTransform;
 
     // Start is called before the first frame update
     public override void Start()
     {
-        base.Start();
+        base.Start(); 
         playerTransform = PlayerController.instance.transform;
         healthBar.setHealth(hp, maxHp);
     }
@@ -33,5 +35,18 @@ public class EnemyController : BulletUnit
         hp = maxHp;
     }
 
+    public void StunEnemy()
+    {
+        isStunned = true;
+        StartCoroutine(StunEnemyCo());
+        rb.velocity = Vector2.zero; 
+
+    }
+
+    IEnumerator StunEnemyCo()
+    {
+        yield return new WaitForSeconds(1.5f);
+        isStunned = false; 
+    }
     
 }

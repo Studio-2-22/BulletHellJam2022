@@ -29,6 +29,7 @@ public class LineController : MonoBehaviour
         }else{
             if(other.tag == "Enemy"){
                 CaptureController.instance.containsEnemy = true;
+                other.gameObject.GetComponent<EnemyController>().StunEnemy(); 
                 other.gameObject.GetComponent<EnemyController>().TakeDamage(PlayerController.instance.lineDamage); 
             }
         }

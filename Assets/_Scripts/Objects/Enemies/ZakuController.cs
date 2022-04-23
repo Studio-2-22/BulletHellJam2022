@@ -13,6 +13,11 @@ public class ZakuController : EnemyController
     // Update is called once per frame
     public virtual void Update()
     {
+
+        if (isStunned) {
+            return; 
+        }
+
         FaceTarget(PlayerController.instance.transform.position);
         float distanceFromPlayer =  Vector2.Distance(transform.position, playerTransform.position);
         if(distanceFromPlayer < detectionRange){

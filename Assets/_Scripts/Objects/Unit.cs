@@ -24,7 +24,7 @@ public class Unit : MonoBehaviour
 
     public  void KillUnit(){
         gameObject.SetActive(false);
-        AudioManager.instance.PlayeEffect(DeathSoundIndex);
+        AudioManager.instance.PlayEffect(DeathSoundIndex);
         if(deathPrefab != null){
             Instantiate(deathPrefab, transform.position, transform.rotation);
         }

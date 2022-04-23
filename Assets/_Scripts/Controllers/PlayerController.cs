@@ -13,7 +13,7 @@ public class PlayerController : BulletUnit
     public float startDashTime;
     public float buttonTimer = 0.2f;
     public int buttonCount = 0;
-    public float dashCD = 0.4f; 
+    public float dashCD = 0.3f; 
     private float dashTime;
     private bool canDash = true;
   
@@ -47,9 +47,10 @@ public class PlayerController : BulletUnit
         Vector2 direction = new Vector2(horizontal, vertical).normalized;
         if(direction.magnitude > 0){
              rb.AddForce(direction * movementSpeed);
-             //if(rb.velocity.magnitude > maxSpeed && !boosting){
-             //    rb.velocity = rb.velocity.normalized * maxSpeed;
-             //} 
+            if (rb.velocity.magnitude > maxSpeed && !boosting)
+            {
+                rb.velocity = rb.velocity.normalized * maxSpeed;
+            }
         }
         if(!boosting ){
             rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, friction * Time.deltaTime);

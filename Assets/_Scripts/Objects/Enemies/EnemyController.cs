@@ -33,6 +33,7 @@ public class EnemyController : BulletUnit
 
     void OnEnable(){
         hp = maxHp;
+        isStunned = false;
     }
 
     public void StunEnemy()

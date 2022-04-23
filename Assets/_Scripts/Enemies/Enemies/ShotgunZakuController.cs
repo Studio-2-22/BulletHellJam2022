@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RedZakuController : ZakuController
+public class ShotgunZakuController : RedZakuController
 {
     // Start is called before the first frame update
      public override void Start()

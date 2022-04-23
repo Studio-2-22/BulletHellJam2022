@@ -29,8 +29,11 @@ public class LineController : MonoBehaviour
         }else{
             if(other.tag == "Enemy"){
                 CaptureController.instance.containsEnemy = true;
-                other.gameObject.GetComponent<EnemyController>().StunEnemy(); 
-                other.gameObject.GetComponent<EnemyController>().TakeDamage(CaptureController.instance.loopCounter); 
+                if(other.gameObject.activeSelf){
+                    other.gameObject.GetComponent<EnemyController>().StunEnemy(); 
+                    other.gameObject.GetComponent<EnemyController>().TakeDamage(CaptureController.instance.loopCounter+1); 
+                }
+                
             }
         }
 

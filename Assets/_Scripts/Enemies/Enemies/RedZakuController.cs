@@ -2,26 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZakuController : EnemyController
+public class RedZakuController : ZakuController
 {
     // Start is called before the first frame update
      public override void Start()
     {
-        base.Start(); // calls EnemyController Start()
+        base.Start(); // calls ZakuController Start()
     }
 
     // Update is called once per frame
-    public virtual void Update()
+    public override void Update()
     {
-
-        if (isStunned) {
-            return; 
-        }
-
-        FaceTarget(PlayerController.instance.transform.position);
+        base.Update(); // calls ZakuController Update()
         float distanceFromPlayer =  Vector2.Distance(transform.position, playerTransform.position);
         if(distanceFromPlayer < detectionRange){
-            
+            FaceTarget(PlayerController.instance.transform.position);
             if(shootTimer > shootDelay){
                 Shoot();
                 shootTimer = 0f;

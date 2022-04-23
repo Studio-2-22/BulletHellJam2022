@@ -164,7 +164,7 @@ public class CaptureController : MonoBehaviour
         //    AudioManager.instance.PlayEffect(4);
         //}
 
-        AudioManager.instance.PlayPitchedEffect(4, loopCounter / 5); 
+        AudioManager.instance.PlayPitchedEffect(4, 1f + loopCounter / 5); 
         
        
     }    

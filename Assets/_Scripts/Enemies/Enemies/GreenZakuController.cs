@@ -15,6 +15,18 @@ public class GreenZakuController : ZakuController
     public override void Update()
     {
         base.Update(); // calls ZakuController Update()
+        float distanceFromPlayer =  Vector2.Distance(transform.position, playerTransform.position);
+        if(distanceFromPlayer < detectionRange){
+            FaceTarget(PlayerController.instance.transform.position);
+            if(shootTimer > shootDelay){
+                Shoot();
+                shootTimer = 0f;
+                
+            }
+            else{
+                shootTimer += Time.deltaTime;
+            }
+        }
     }
 
     void OnApplicationQuit(){

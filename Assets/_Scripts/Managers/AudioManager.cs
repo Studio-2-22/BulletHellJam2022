@@ -47,7 +47,6 @@ public class AudioManager : MonoBehaviour
 
     public void PlayPitchedEffect(int index, float pitch)
     {
-        pitch = Random.Range(0.9f, 1);
         SFX[index].pitch = pitch;
         SFX[index].Play();
 

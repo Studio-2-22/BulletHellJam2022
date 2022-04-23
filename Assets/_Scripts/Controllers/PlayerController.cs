@@ -87,7 +87,7 @@ public class PlayerController : BulletUnit
         boosting = true;
         //rb.AddForce(-transform.up * boostFactor * movementSpeed);
         
-        rb.velocity = rb.velocity + (-(Vector2)transform.up * dashSpeed * movementSpeed);
+        rb.velocity = rb.velocity + ((Vector2)transform.up * dashSpeed * movementSpeed);
 
         StartCoroutine(StopPlayer());
     }

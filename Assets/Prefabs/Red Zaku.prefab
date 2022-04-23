@@ -285,7 +285,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &350302135905090943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,6 +298,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d600def57c22f943a6f3de3a51d96d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bc: {fileID: 0}
+  rb: {fileID: 0}
   maxHp: 5
   hp: 0
   movementSpeed: 10
@@ -306,8 +308,7 @@ MonoBehaviour:
   deathPrefab: {fileID: 5917974197536065495, guid: c723dd3ddd0659a4ea5af5b911aff3aa, type: 3}
   DeathSoundIndex: 0
   bm: {fileID: 0}
-  bc: {fileID: 0}
-  rb: {fileID: 0}
+  bulletSoundIndex: 3
   healthBar: {fileID: 350302136258229043}
   shootTimer: 0
   detectionRange: 50

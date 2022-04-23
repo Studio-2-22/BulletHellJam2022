@@ -43,17 +43,26 @@ public class BombZaku : EnemyController
 
     public void Explode()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius, LayerMask.GetMask("Enemy"));
+        Collider2D playerCheck  = Physics2D.OverlapCircle(transform.position, explosionRadius, LayerMask.GetMask("Player"));
         foreach (Collider2D collider in colliders)
         {
-            Vector2 direction = collider.transform.position - transform.position;
-            if (collider.tag == "Player" || collider.tag == "Enemy" && collider.gameObject != gameObject)
+           
+            if (collider.tag == "Enemy" && collider.gameObject != gameObject)
             {
+                Vector2 direction = collider.transform.position - transform.position;
                 collider.GetComponent<Unit>().TakeDamage(explosionDamage);
                 collider.GetComponent<Rigidbody2D>().AddForce(direction.normalized * explosionForce);
             }
-            
         }
+
+        if(playerCheck != null){
+          PlayerController.instance.TakeDamage(explosionDamage);
+          Vector2 direction = playerCheck.transform.position - transform.position;
+          playerCheck.GetComponent<Rigidbody2D>().AddForce(direction.normalized * explosionForce);
+        }
+
+
         if(explosionPrefab != null){
             GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             Destroy(explosion, 1f);

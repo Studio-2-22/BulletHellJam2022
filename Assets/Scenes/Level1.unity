@@ -1288,8 +1288,8 @@ MonoBehaviour:
   timeToShrink: 0.25
   scaleMin: {x: 1, y: 1, z: 1}
   scaleMax: {x: 2, y: 2, z: 2}
-  minRandomRange: 0.1
-  maxRandomRange: 0.25
+  minRandomRange: 0.5
+  maxRandomRange: 2
   mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
   material: {fileID: 2100000, guid: cee20a45e456244df98c7959660befaa, type: 2}
 --- !u!4 &1068828082

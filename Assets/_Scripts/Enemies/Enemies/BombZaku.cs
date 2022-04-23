@@ -47,17 +47,12 @@ public class BombZaku : EnemyController
         foreach (Collider2D collider in colliders)
         {
             Vector2 direction = collider.transform.position - transform.position;
-            if (collider.tag == "Player")
-            {
-                Debug.Log("Player hit");
-                collider.GetComponent<Unit>().TakeDamage(explosionDamage);
-                
-            }
-            else if (collider.tag == "Enemy" && collider.gameObject != gameObject)
+            if (collider.tag == "Player" || collider.tag == "Enemy" && collider.gameObject != gameObject)
             {
                 collider.GetComponent<Unit>().TakeDamage(explosionDamage);
+                collider.GetComponent<Rigidbody2D>().AddForce(direction.normalized * explosionForce);
             }
-            collider.GetComponent<Rigidbody2D>().AddForce(direction.normalized * explosionForce);
+            
         }
         if(explosionPrefab != null){
             GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);

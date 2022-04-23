@@ -306,7 +306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletLayersToBeHitBy:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 512
   shape: 1
   radius: 0.5
   size: {x: 1, y: 1, z: 1}
@@ -2317,6 +2317,10 @@ PrefabInstance:
     - target: {fileID: 1834971183103830676, guid: 7ad69c889ba229e448cfa386b743e0ae, type: 3}
       propertyPath: m_Name
       value: EnemyBulletManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834971183103830676, guid: 7ad69c889ba229e448cfa386b743e0ae, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1834971183103830698, guid: 7ad69c889ba229e448cfa386b743e0ae, type: 3}
       propertyPath: OnBulletSpawned.m_PersistentCalls.m_Calls.Array.size

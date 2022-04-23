@@ -20,7 +20,7 @@ public class LineController : MonoBehaviour
                     CaptureController.instance.CancelLine();
                 }
                 
-            }else{
+            }else if(other.tag == "Enemy"){
                 // Debug.Log("Cancelled");
                 // Debug.Log(other.tag);
                 CaptureController.instance.CancelLine();
@@ -30,7 +30,7 @@ public class LineController : MonoBehaviour
             if(other.tag == "Enemy"){
                 CaptureController.instance.containsEnemy = true;
                 other.gameObject.GetComponent<EnemyController>().StunEnemy(); 
-                other.gameObject.GetComponent<EnemyController>().TakeDamage(PlayerController.instance.lineDamage); 
+                other.gameObject.GetComponent<EnemyController>().TakeDamage(CaptureController.instance.loopCounter); 
             }
         }
 

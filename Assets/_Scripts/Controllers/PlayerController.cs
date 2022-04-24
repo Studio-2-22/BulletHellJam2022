@@ -13,7 +13,7 @@ public class PlayerController : BulletUnit
     public float dashCD = 0.3f; 
     private float dashTime = 0.2f;
     private bool canDash = true;
-    private bool isDashing = true; 
+    private bool isDashing = false; 
 
     private void Awake()
     {
@@ -45,9 +45,10 @@ public class PlayerController : BulletUnit
              rb.AddForce(direction * movementSpeed);
 
         }
-        if(!isDashing  || rb.velocity.magnitude < maxSpeed){
+        if(!isDashing){
             rb.velocity = Mathf.Min(maxSpeed, rb.velocity.magnitude)  * rb.velocity.normalized;
-            rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, friction * Time.deltaTime);
+            Debug.Log(rb.velocity.magnitude);
+            //rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, friction * Time.deltaTime);
         }
             
         buttonTimer -= Time.deltaTime;

@@ -38,6 +38,7 @@ public class WaveManager : MonoBehaviour
                     for(int i = 0; i < currentWaveObject.transform.childCount; i++)
                     {
                        EnemyController enemy = currentWaveObject.transform.GetChild(i).gameObject.GetComponent<EnemyController>();
+                       GreenZakuController gz;
                        enemy.hp = enemy.maxHp;
                        enemy.healthBar.setHealth(enemy.maxHp, enemy.maxHp);
                        enemy.gameObject.SetActive(true);

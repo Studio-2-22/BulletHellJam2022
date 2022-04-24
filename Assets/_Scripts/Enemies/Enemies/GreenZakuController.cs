@@ -31,8 +31,4 @@ public class GreenZakuController : EnemyController
             }
         }
     }
-
-    void OnApplicationQuit(){
-        Destroy(gameObject);
-    }
 }

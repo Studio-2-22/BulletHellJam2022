@@ -39,6 +39,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -232,6 +233,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      DashZaku 1_4: 4750488843080880760
+      DashZaku 1_0: 6959610039781708015
+      DashZaku 1_2: -868313352436101184
+      DashZaku 1_1: 2291047829068436993
+      DashZaku 1_3: -3364007822411654446
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

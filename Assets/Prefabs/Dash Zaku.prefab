@@ -222,7 +222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7850523315597387597}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28.53, y: -3.08, z: 107.36392}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7850523315378530563}
@@ -397,6 +397,7 @@ MonoBehaviour:
   hoverRange: 15
   shootDelay: 4
   isStunned: 0
+  playerStats: {fileID: 0}
   playerTransform: {fileID: 0}
   DashDamage: 3
   DashSpeed: 4

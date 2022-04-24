@@ -118,12 +118,12 @@ TextureImporter:
       name: Circ2 1_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 4
         y: 16
-        width: 16
-        height: 16
+        width: 12
+        height: 12
       alignment: 9
-      pivot: {x: 0.7550091, y: 0.2201525}
+      pivot: {x: 0.5315454, y: 0.36912838}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -141,10 +141,10 @@ TextureImporter:
         serializedVersion: 2
         x: 16
         y: 16
-        width: 16
-        height: 16
+        width: 11
+        height: 11
       alignment: 9
-      pivot: {x: 0.17709875, y: 0.17544305}
+      pivot: {x: 0.3847618, y: 0.410193}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -160,12 +160,12 @@ TextureImporter:
       name: Circ2 1_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
-        height: 16
+        x: 3
+        y: 3
+        width: 13
+        height: 13
       alignment: 9
-      pivot: {x: 0.81296575, y: 0.7632887}
+      pivot: {x: 0.5990518, y: 0.6486919}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -182,11 +182,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 0
-        width: 16
-        height: 16
+        y: 4
+        width: 12
+        height: 12
       alignment: 9
-      pivot: {x: 0.19862545, y: 0.76494455}
+      pivot: {x: 0.37656865, y: 0.6449364}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

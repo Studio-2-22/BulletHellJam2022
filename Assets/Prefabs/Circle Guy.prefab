@@ -117,7 +117,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9053614793073534166}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.99, y: -6.35, z: 107.36392}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -165,7 +165,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 06327637cf885a542b01d77d873b9f02, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1d13e9ba8a5f00b4997cf4161349654b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -283,7 +283,7 @@ MonoBehaviour:
   movementSpeed: 10
   maxSpeed: 20
   friction: 2
-  deathPrefab: {fileID: 0}
+  deathPrefab: {fileID: 8990412648048043523, guid: 2c6398be4270cf844950bef78cb3cac4, type: 3}
   DeathSoundIndex: 0
   bm: {fileID: 0}
   bulletSoundIndex: 3
@@ -291,10 +291,11 @@ MonoBehaviour:
   shootTimer: 0
   detectionRange: 50
   hoverRange: 15
-  shootDelay: 5
+  shootDelay: 0.7
   isStunned: 0
+  playerStats: {fileID: 0}
   playerTransform: {fileID: 0}
-  rotationSpeed: 5
+  rotationSpeed: 160
 --- !u!1 &9053614793097454437
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,9 @@ public class ShotgunZakuController : RedZakuController
     // Update is called once per frame
     public override void Update()
     {
-        base.Update(); // calls ZakuController Update()
+        if (isStunned) {
+            rb.velocity = Vector2.zero;
+            return; 
+        }
     }
 }

@@ -26,9 +26,7 @@ public class EnemyController : BulletUnit
     }
 
     public virtual void Update(){
-        if (isStunned) {
-            return; 
-        }
+        
     }
 
     public override void TakeDamage(float damage)

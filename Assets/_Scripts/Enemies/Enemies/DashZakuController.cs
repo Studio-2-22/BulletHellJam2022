@@ -20,7 +20,10 @@ public class DashZakuController : EnemyController
     // Update is called once per frame
     public override void Update()
     {
-        base.Update(); // calls EnemyController Update()
+        if (isStunned) {
+            rb.velocity = Vector2.zero;
+            return; 
+        }
         float distanceFromPlayer =  Vector2.Distance(transform.position, playerTransform.position);
         if(distanceFromPlayer < detectionRange){
             //slowly face the player

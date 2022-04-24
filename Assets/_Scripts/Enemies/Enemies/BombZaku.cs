@@ -16,13 +16,14 @@ public class BombZaku : EnemyController
 
     
 
-    public void Update()
+    public override void Update()
     {
-      if(exploded) {
-        return;
-      }
+  
       if(!isExploding){
-
+        if (isStunned) {
+            rb.velocity = Vector2.zero;
+            return; 
+        }
         Vector2 playerPos = PlayerController.instance.transform.position;
         float distanceFromPlayer =  Vector2.Distance(transform.position, playerPos);
         FaceTarget(PlayerController.instance.transform.position);

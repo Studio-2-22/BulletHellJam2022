@@ -13,7 +13,10 @@ public class RedZakuController : ZakuController
     // Update is called once per frame
     public override void Update()
     {
-        base.Update(); // calls ZakuController Update()
+        if (isStunned) {
+            rb.velocity = Vector2.zero;
+            return; 
+        }
         float distanceFromPlayer =  Vector2.Distance(transform.position, playerTransform.position);
         if(distanceFromPlayer < detectionRange){
             FaceTarget(PlayerController.instance.transform.position);

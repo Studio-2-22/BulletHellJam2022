@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6328849907460654455}
   - component: {fileID: 6328849907460654441}
   - component: {fileID: 6328849907460654440}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6328849908275910367}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6328849908601482826}
   - component: {fileID: 6328849908601482825}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Healthbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 6328849909133087808}
   - component: {fileID: 6328849909133087810}
   - component: {fileID: 6328849909133087809}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 6328849909142328319}
   - component: {fileID: 6328849909142328318}
   - component: {fileID: 5983052559535530003}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Green Zaku
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -400,6 +400,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  bounce: 0
+  lifetimeLoss: 0
+  bounciness: 0
 --- !u!61 &6328849909142328319
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -446,7 +449,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &5983052559535530003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,6 +462,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07643b7bd30919a40ad7fd63b55334ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bc: {fileID: 0}
+  rb: {fileID: 0}
   maxHp: 3
   hp: 3
   movementSpeed: 10
@@ -467,13 +472,13 @@ MonoBehaviour:
   deathPrefab: {fileID: 2688619256983356344, guid: c7dcf2287105c34488ef37493488aa9c, type: 3}
   DeathSoundIndex: 0
   bm: {fileID: 0}
-  bc: {fileID: 0}
-  rb: {fileID: 0}
+  bulletSoundIndex: 3
   healthBar: {fileID: 6328849909191843249}
   shootTimer: 0
   detectionRange: 50
   hoverRange: 15
   shootDelay: 1
+  isStunned: 0
   playerTransform: {fileID: 0}
 --- !u!1 &6328849909191843248
 GameObject:
@@ -488,7 +493,7 @@ GameObject:
   - component: {fileID: 6328849909191843252}
   - component: {fileID: 6328849909191843251}
   - component: {fileID: 6328849909191843249}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GreenZakuController : ZakuController
+public class ShotgunZakuController : RedZakuController
 {
-    
     // Start is called before the first frame update
      public override void Start()
     {
@@ -14,10 +13,9 @@ public class GreenZakuController : ZakuController
     // Update is called once per frame
     public override void Update()
     {
-        base.Update(); // calls ZakuController Update()
-    }
-
-    void OnApplicationQuit(){
-        Destroy(gameObject);
+        if (isStunned) {
+            rb.velocity = Vector2.zero;
+            return; 
+        }
     }
 }

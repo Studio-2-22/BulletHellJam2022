@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BulletFury;
+using BulletFury.Data;
 
 public class Unit : MonoBehaviour
 {
-    
+    [HideInInspector]
+    public BulletCollider bc;
+    [HideInInspector]
+    public Rigidbody2D rb;
     public float maxHp = 3f;
     public float hp = 3f;
     public float movementSpeed = 10f;
@@ -13,6 +18,11 @@ public class Unit : MonoBehaviour
     public GameObject deathPrefab;
     public int DeathSoundIndex = 0;//index of enemy death sound in AudioManager
 
+    public virtual void Start(){
+        hp = maxHp;
+        bc = GetComponent<BulletCollider>();
+        rb = GetComponent<Rigidbody2D>();
+    }
     public virtual void TakeDamage(float damage)
     {
         hp -= damage;
@@ -21,10 +31,14 @@ public class Unit : MonoBehaviour
             KillUnit();           
         }
     }
+     public void TakeBulletDamage(BulletContainer bullet, BulletCollider bc){
+        TakeDamage(bullet.Damage);
+    }
 
-    public  void KillUnit(){
+
+    public virtual void KillUnit(){
         gameObject.SetActive(false);
-        AudioManager.instance.PlayeEffect(DeathSoundIndex);
+        AudioManager.instance.PlayEffect(DeathSoundIndex);
         if(deathPrefab != null){
             Instantiate(deathPrefab, transform.position, transform.rotation);
         }
@@ -35,7 +49,7 @@ public class Unit : MonoBehaviour
     {
         Vector2 direction = target - (Vector2)transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle-270, Vector3.forward);
+        transform.rotation = Quaternion.AngleAxis(angle-90, Vector3.forward);
     }
 
 }

@@ -37,19 +37,19 @@ public class AudioManager : MonoBehaviour
         Music[index].Play();
     }
 
-    public void PlayeEffect(int index)
+    public void PlayEffect(int index)
     {
         float pitch = Random.Range(0.9f, 1);
         SFX[index].pitch = pitch;
         SFX[index].Play();
-        SFX[index].pitch = 1;
+
     }
 
-    public void PlayePitchedEffect(int index, float pitch)
+    public void PlayPitchedEffect(int index, float pitch)
     {
         SFX[index].pitch = pitch;
         SFX[index].Play();
-        SFX[index].pitch = 1;
+
     }
 
     public void StopMusic(int index)

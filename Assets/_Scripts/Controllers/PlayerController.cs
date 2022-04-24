@@ -11,9 +11,11 @@ public class PlayerController : BulletUnit
     public float boostFactor = 5f;
     public float dashSpeed;
     public float startDashTime;
-    public float buttonTimer = 0.4f;
-    public int buttonCount = 0; 
+    public float buttonTimer = 0.2f;
+    public int buttonCount = 0;
+    public float dashCD = 0.3f; 
     private float dashTime;
+    private bool canDash = true;
   
     private bool boosting = false; 
     private void Awake()
@@ -45,9 +47,10 @@ public class PlayerController : BulletUnit
         Vector2 direction = new Vector2(horizontal, vertical).normalized;
         if(direction.magnitude > 0){
              rb.AddForce(direction * movementSpeed);
-             if(rb.velocity.magnitude > maxSpeed && !boosting){
-                 rb.velocity = rb.velocity.normalized * maxSpeed;
-             } 
+            if (rb.velocity.magnitude > maxSpeed && !boosting)
+            {
+                rb.velocity = rb.velocity.normalized * maxSpeed;
+            }
         }
         if(!boosting ){
             rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, friction * Time.deltaTime);
@@ -55,15 +58,19 @@ public class PlayerController : BulletUnit
             
         buttonTimer -= Time.deltaTime;
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && canDash)
         {
             buttonCount++;
 
             if (buttonTimer > 0 && buttonCount == 1)
             {
-                Dash(direction);
+
+                Dash();
+                canDash = false;
+                StartCoroutine(DashCoolDown());
                 buttonCount = 0; 
                 boosting = false;
+
             } 
             else {
                 buttonTimer = 0.5f;
@@ -73,18 +80,29 @@ public class PlayerController : BulletUnit
 
         if (Input.GetMouseButton(0))
         {   
-             bm.Spawn(transform.position, -transform.up);
+            Shoot();
         }
     }
 
     void Dash(Vector2 direction){
         boosting = true;
         //rb.AddForce(-transform.up * boostFactor * movementSpeed);
-        ////StartCoroutine(BoostCooldown());
         
-        rb.velocity = rb.velocity + (direction * dashSpeed * movementSpeed);
+
+        rb.velocity = rb.velocity + ((Vector2)transform.up * dashSpeed * movementSpeed);
 
 
-        
+        StartCoroutine(StopPlayer());
+    }
+
+    IEnumerator StopPlayer()
+    {
+        yield return new WaitForSeconds(0.2f);
+        rb.velocity = rb.velocity * 0.3f; 
+    }
+    IEnumerator DashCoolDown()
+    {
+        yield return new WaitForSeconds(dashCD);
+        canDash = true; 
     }
 }

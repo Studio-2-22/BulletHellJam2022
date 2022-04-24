@@ -57,11 +57,11 @@ public class CaptureController : MonoBehaviour
             }
             if(Input.GetMouseButton(1))
             {
-                //Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector2 playerPos = transform.position - -transform.up ;
-                if(Vector2.Distance(playerPos, points[points.Count - 1]) > 0.3f)
+                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                //Vector2 playerPos = transform.position - -transform.up ;
+                if(Vector2.Distance(mousePos, points[points.Count - 1]) > 0.3f)
                 {
-                    UpdateLine(playerPos);
+                    UpdateLine(mousePos);
                 }
             }
             if(Input.GetMouseButtonUp(1))
@@ -87,7 +87,7 @@ public class CaptureController : MonoBehaviour
 
     private void CreateLine()
     {
-        Vector2 startPos =  transform.position - -transform.up ;
+        Vector2 startPos =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
         currentLineStart = Instantiate(lineStartPrefab, startPos, Quaternion.identity);
         currentLineHead = Instantiate(lineHeadPrefab, startPos, transform.rotation, transform);
@@ -104,7 +104,7 @@ public class CaptureController : MonoBehaviour
         lineRenderer.SetPosition(1, points[1]);
         edgeCollider.points = points.ToArray();
         hasLeftStart = false;
-        AudioManager.instance.PlayeEffect(5);
+        AudioManager.instance.PlayEffect(5);
     }
 
     private void UpdateLine(Vector2 newPoint) {
@@ -119,7 +119,11 @@ public class CaptureController : MonoBehaviour
         points.Add(newPoint);
         lineRenderer.positionCount++;
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, newPoint);
-        edgeCollider.points = points.GetRange(0, points.Count-2).ToArray();
+        if(points.Count > 4)
+        {
+            edgeCollider.points = points.GetRange(0, points.Count - 4).ToArray();
+        }
+        
     }
 
     public void ResetLine() {
@@ -157,13 +161,14 @@ public class CaptureController : MonoBehaviour
     }
 
     void PlayLoopSound() {
-        if(loopCounter < 5){
-            float pitch = 0.5f + 0.5f * loopCounter / 4f;
-            AudioManager.instance.PlayePitchedEffect(4, pitch);
-        }else{
-            AudioManager.instance.PlayeEffect(4);
-        }
-        
+        //if(loopCounter < 5){
+        //    float pitch = 0.5f + 0.5f * loopCounter / 4f;
+        //    AudioManager.instance.PlayPitchedEffect(4, pitch);
+        //}else{
+        //    AudioManager.instance.PlayEffect(4);
+        //}
+
+        AudioManager.instance.PlayPitchedEffect(4, 1f + loopCounter / 5); 
         
        
     }    

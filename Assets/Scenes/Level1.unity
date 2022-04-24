@@ -2514,6 +2514,18 @@ PrefabInstance:
       propertyPath: maxSpeed
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 7883111918781369535, guid: 53ffe61b3304287479ada255a94f9147, type: 3}
+      propertyPath: dashSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883111918781369535, guid: 53ffe61b3304287479ada255a94f9147, type: 3}
+      propertyPath: lineDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883111918781369535, guid: 53ffe61b3304287479ada255a94f9147, type: 3}
+      propertyPath: boostFactor
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53ffe61b3304287479ada255a94f9147, type: 3}
 --- !u!1001 &8606004516041969568

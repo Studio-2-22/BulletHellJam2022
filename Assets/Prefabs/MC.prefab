@@ -50,18 +50,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bc: {fileID: 0}
   rb: {fileID: 0}
-  maxHp: 3
-  hp: 3
+  maxHp: 20
+  hp: 20
   movementSpeed: 20
-  maxSpeed: 50
+  maxSpeed: 30
   friction: 0.3
   deathPrefab: {fileID: 0}
   DeathSoundIndex: 0
   bm: {fileID: 0}
   bulletSoundIndex: 3
-  lineDamage: 1
+  lineDamage: 5
   boostFactor: 5
-  dashSpeed: 0
+  dashSpeed: 5
   startDashTime: 0
   buttonTimer: 0.2
   buttonCount: 0

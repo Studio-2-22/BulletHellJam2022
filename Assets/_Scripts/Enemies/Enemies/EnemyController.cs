@@ -31,7 +31,7 @@ public class EnemyController : BulletUnit
         healthBar.setHealth(hp, maxHp);
     }
 
-    void OnEnable(){
+    public virtual void OnEnable(){
         hp = maxHp;
         isStunned = false;
     }

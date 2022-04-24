@@ -49,11 +49,14 @@ public class BombZaku : EnemyController
         foreach (Collider2D collider in colliders)
         {
            
-            if (collider.tag == "Enemy" && collider.gameObject != gameObject && !collider.GetComponent<BombZaku>())
+            if (collider.tag == "Enemy" && collider.gameObject != gameObject)
             {
-                Vector2 direction = collider.transform.position - transform.position;
-                collider.GetComponent<Unit>().TakeDamage(explosionDamage);
-                collider.GetComponent<Rigidbody2D>().AddForce(direction.normalized * explosionForce);
+              if(collider.GetComponent<BombZaku>()){
+                collider.gameObject.SetActive(false);
+              }
+              Vector2 direction = collider.transform.position - transform.position;
+              collider.GetComponent<Unit>().TakeDamage(explosionDamage);
+              collider.GetComponent<Rigidbody2D>().AddForce(direction.normalized * explosionForce);
             }
         }
 
@@ -73,6 +76,13 @@ public class BombZaku : EnemyController
 
     public override void KillUnit(){
         Explode();
+    }
+
+    public override void OnEnable(){
+      base.OnEnable();
+      isExploding = false;
+      exploded = false;
+      explosionTimer = 0f;
     }
 
     public void OnDrawGizmosSelected()

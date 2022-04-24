@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 787eb0155f39a484f819d9cbee7d080b
+guid: 10e51919d0c03ac488bcba91b5cf32d3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1739894583080311981
-    second: BombZaku 1_0
+      213: 6959610039781708015
+    second: DashZaku 1_0
   - first:
-      213: -5210294898457281784
-    second: BombZaku 1_1
+      213: 2291047829068436993
+    second: DashZaku 1_1
   - first:
-      213: -6319298401064906474
-    second: BombZaku 1_2
+      213: -868313352436101184
+    second: DashZaku 1_2
   - first:
-      213: -3480918489723403924
-    second: BombZaku 1_3
+      213: -3364007822411654446
+    second: DashZaku 1_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -115,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BombZaku 1_0
+      name: DashZaku 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -123,20 +123,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 9
-      pivot: {x: 0.9321908, y: 0.049594402}
+      pivot: {x: 0.96530885, y: 0.38905454}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dacd02ba7e8552810800000000000000
-      internalID: 1739894583080311981
+      spriteID: fe05e642570859060800000000000000
+      internalID: 6959610039781708015
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BombZaku 1_1
+      name: DashZaku 1_1
       rect:
         serializedVersion: 2
         x: 16
@@ -144,20 +144,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 9
-      pivot: {x: 0.04297054, y: 0.04628265}
+      pivot: {x: 0.072776794, y: 0.3493129}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80b7c6a256051b7b0800000000000000
-      internalID: -5210294898457281784
+      spriteID: 106dd0facdf6bcf10800000000000000
+      internalID: 2291047829068436993
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BombZaku 1_2
+      name: DashZaku 1_2
       rect:
         serializedVersion: 2
         x: 0
@@ -165,20 +165,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 9
-      pivot: {x: 0.86429876, y: 0.826213}
+      pivot: {x: 0.85767514, y: 0.7318265}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61115d6d5975d48a0800000000000000
-      internalID: -6319298401064906474
+      spriteID: 0cf41524b9123f3f0800000000000000
+      internalID: -868313352436101184
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BombZaku 1_3
+      name: DashZaku 1_3
       rect:
         serializedVersion: 2
         x: 16
@@ -186,14 +186,14 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 9
-      pivot: {x: 0.16716337, y: 0.80965394}
+      pivot: {x: 0.15888381, y: 0.7583209}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6182f7831b41bfc0800000000000000
-      internalID: -3480918489723403924
+      spriteID: 2da948375b4a051d0800000000000000
+      internalID: -3364007822411654446
       vertices: []
       indices: 
       edges: []

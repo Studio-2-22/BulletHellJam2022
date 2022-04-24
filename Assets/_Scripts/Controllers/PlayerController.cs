@@ -16,6 +16,7 @@ public class PlayerController : BulletUnit
     public float dashCD = 0.3f; 
     private float dashTime;
     private bool canDash = true;
+    private bool isDash = true; 
   
     private bool boosting = false; 
     private void Awake()
@@ -50,6 +51,10 @@ public class PlayerController : BulletUnit
             if (rb.velocity.magnitude > maxSpeed && !boosting)
             {
                 rb.velocity = rb.velocity.normalized * maxSpeed;
+            } 
+            else if (rb.velocity.magnitude > maxSpeed && isDash)
+            {
+                Dash(); 
             }
         }
         if(!boosting ){
@@ -85,6 +90,7 @@ public class PlayerController : BulletUnit
 
     void Dash(){
         boosting = true;
+
         //rb.AddForce(-transform.up * boostFactor * movementSpeed);
         
         rb.velocity = rb.velocity + ((Vector2)transform.up * dashSpeed * movementSpeed);
@@ -95,7 +101,8 @@ public class PlayerController : BulletUnit
     IEnumerator StopPlayer()
     {
         yield return new WaitForSeconds(0.2f);
-        rb.velocity = rb.velocity * 0.3f; 
+        rb.velocity = rb.velocity * 0.3f;
+        isDash = false;
     }
     IEnumerator DashCoolDown()
     {

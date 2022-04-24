@@ -1013,7 +1013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemiesWaves:
   - {fileID: 28522149}
-  waveLength: 60
+  waveLength: 30
 --- !u!1 &1013510921
 GameObject:
   m_ObjectHideFlags: 0

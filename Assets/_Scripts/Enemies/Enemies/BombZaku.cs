@@ -44,11 +44,12 @@ public class BombZaku : EnemyController
     public void Explode()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius, LayerMask.GetMask("Enemy"));
+        Debug.Log(colliders.ToString());
         Collider2D playerCheck  = Physics2D.OverlapCircle(transform.position, explosionRadius, LayerMask.GetMask("Player"));
         foreach (Collider2D collider in colliders)
         {
            
-            if (collider.tag == "Enemy" && collider.gameObject != gameObject)
+            if (collider.tag == "Enemy" && collider.gameObject != gameObject && !collider.GetComponent<BombZaku>())
             {
                 Vector2 direction = collider.transform.position - transform.position;
                 collider.GetComponent<Unit>().TakeDamage(explosionDamage);

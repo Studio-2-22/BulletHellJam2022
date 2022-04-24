@@ -25,6 +25,12 @@ public class EnemyController : BulletUnit
         healthBar.setHealth(hp, maxHp);
     }
 
+    public virtual void Update(){
+        if (isStunned) {
+            return; 
+        }
+    }
+
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);

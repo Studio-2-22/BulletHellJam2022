@@ -14,9 +14,8 @@ public class ZakuController : EnemyController
     public virtual void Update()
     {
 
-        if (isStunned) {
-            return; 
-        }
+     base.Update();
+     
 
         
         

@@ -19,8 +19,8 @@ MonoBehaviour:
   directionArc: 0
   randomise: 0
   onEdge: 0
-  numSides: 8
+  numSides: 5
   numPerSide: 1
   radius: 2.68
-  arc: 344
+  arc: 147
   isExpanded: 1

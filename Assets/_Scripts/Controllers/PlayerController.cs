@@ -7,14 +7,11 @@ using BulletFury.Data;
 public class PlayerController : BulletUnit
 {
     public static PlayerController instance;
-    public float lineDamage = 1f;
-    public float boostFactor = 5f;
-    public float dashSpeed;
-    public float startDashTime;
+    public float dashSpeed = 5f;
     public float buttonTimer = 0.2f;
     public int buttonCount = 0;
     public float dashCD = 0.3f; 
-    private float dashTime;
+    private float dashTime = 0.2f;
     private bool canDash = true;
     private bool isDashing = true; 
 
@@ -32,7 +29,6 @@ public class PlayerController : BulletUnit
     public override void Start()
     {
         base.Start(); // calls BulletUnit Start()
-        dashTime = startDashTime; 
     }
 
     // Update is called once per frame
@@ -95,9 +91,16 @@ public class PlayerController : BulletUnit
         StartCoroutine(StopPlayer());
     }
 
+    public void AddStats(AddPlayerStats stats){
+        
+        //bm.
+        // dashSpeed += stats.dashSpeed;
+        // dashCD += stats.dashCD;
+    }
+
     IEnumerator StopPlayer()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(dashTime);
         rb.velocity = rb.velocity * 0.01f;
         isDashing = false;
         GetComponent<TrailRenderer>().enabled = false;
@@ -109,4 +112,6 @@ public class PlayerController : BulletUnit
         yield return new WaitForSeconds(dashCD);
         canDash = true; 
     }
+
+
 }

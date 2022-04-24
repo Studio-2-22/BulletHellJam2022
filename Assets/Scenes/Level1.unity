@@ -1553,11 +1553,11 @@ PrefabInstance:
     - target: {fileID: 1834971183103830698, guid: 7ad69c889ba229e448cfa386b743e0ae, type: 3}
       propertyPath: spawnSettings
       value: 
-      objectReference: {fileID: 11400000, guid: 68c22f8500ef6244cbb844be22a7b71b, type: 2}
+      objectReference: {fileID: 11400000, guid: 5c24ef0a75a675d43a33b5acb897a233, type: 2}
     - target: {fileID: 1834971183103830698, guid: 7ad69c889ba229e448cfa386b743e0ae, type: 3}
       propertyPath: bulletSettings
       value: 
-      objectReference: {fileID: 11400000, guid: 9046c870d2048d1489aea1d97292723d, type: 2}
+      objectReference: {fileID: 11400000, guid: 8510dbd4d27d00c41af19d13a519bc17, type: 2}
     - target: {fileID: 1834971183103830698, guid: 7ad69c889ba229e448cfa386b743e0ae, type: 3}
       propertyPath: OnBulletSpawned.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1692,7 +1692,7 @@ Transform:
   m_GameObject: {fileID: 1517236850}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 712.7828, y: 712.7828, z: 0}
+  m_LocalScale: {x: 399.15836, y: 399.15836, z: 0}
   m_Children:
   - {fileID: 2053435165}
   - {fileID: 593718856}
@@ -2419,7 +2419,7 @@ PrefabInstance:
       objectReference: {fileID: 578399295}
     - target: {fileID: 9053614793073534167, guid: 7ebe1eb2601576441974107b7e65db6f, type: 3}
       propertyPath: shootDelay
-      value: 0.2
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 9053614793073534167, guid: 7ebe1eb2601576441974107b7e65db6f, type: 3}
       propertyPath: rotationSpeed

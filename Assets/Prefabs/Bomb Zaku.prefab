@@ -345,7 +345,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5199794195052977977}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.49, y: -11.54, z: 107.36393}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -509,8 +509,8 @@ MonoBehaviour:
   rb: {fileID: 0}
   maxHp: 3
   hp: 3
-  movementSpeed: 10
-  maxSpeed: 20
+  movementSpeed: 20
+  maxSpeed: 60
   friction: 2
   deathPrefab: {fileID: 0}
   DeathSoundIndex: 0
@@ -525,7 +525,7 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   explosionRadius: 7
   explosionDamage: 5
-  explosionForce: 100
+  explosionForce: 300
   explosionDelay: 1
   explosionTimer: 0
   isExploding: 0

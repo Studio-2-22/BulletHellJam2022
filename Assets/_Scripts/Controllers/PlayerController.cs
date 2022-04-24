@@ -16,9 +16,8 @@ public class PlayerController : BulletUnit
     public float dashCD = 0.3f; 
     private float dashTime;
     private bool canDash = true;
-    private bool isDash = true; 
-  
-    private bool boosting = false; 
+    private bool isDashing = true; 
+
     private void Awake()
     {
         if(instance == null){
@@ -48,16 +47,10 @@ public class PlayerController : BulletUnit
         Vector2 direction = new Vector2(horizontal, vertical).normalized;
         if(direction.magnitude > 0){
              rb.AddForce(direction * movementSpeed);
-            if (rb.velocity.magnitude > maxSpeed && !boosting)
-            {
-                rb.velocity = rb.velocity.normalized * maxSpeed;
-            } 
-            else if (rb.velocity.magnitude > maxSpeed && isDash)
-            {
-                Dash(); 
-            }
+
         }
-        if(!boosting ){
+        if(!isDashing  || rb.velocity.magnitude < maxSpeed){
+            rb.velocity = Mathf.Min(maxSpeed, rb.velocity.magnitude)  * rb.velocity.normalized;
             rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, friction * Time.deltaTime);
         }
             
@@ -74,7 +67,7 @@ public class PlayerController : BulletUnit
                 canDash = false;
                 StartCoroutine(DashCoolDown());
                 buttonCount = 0; 
-                boosting = false;
+       
 
             } 
             else {
@@ -90,12 +83,13 @@ public class PlayerController : BulletUnit
     }
 
     void Dash(){
-        boosting = true;
+        
 
         //rb.AddForce(-transform.up * boostFactor * movementSpeed);
         
-
+        isDashing = true;
         rb.velocity = rb.velocity + ((Vector2)transform.up * dashSpeed * movementSpeed);
+        GetComponent<TrailRenderer>().enabled = true;
 
 
         StartCoroutine(StopPlayer());
@@ -104,8 +98,11 @@ public class PlayerController : BulletUnit
     IEnumerator StopPlayer()
     {
         yield return new WaitForSeconds(0.2f);
-        rb.velocity = rb.velocity * 0.3f;
-        isDash = false;
+        rb.velocity = rb.velocity * 0.01f;
+        isDashing = false;
+        GetComponent<TrailRenderer>().enabled = false;
+
+     
     }
     IEnumerator DashCoolDown()
     {

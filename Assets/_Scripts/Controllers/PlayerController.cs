@@ -84,7 +84,7 @@ public class PlayerController : BulletUnit
         }
     }
 
-    void Dash(Vector2 direction){
+    void Dash(){
         boosting = true;
         //rb.AddForce(-transform.up * boostFactor * movementSpeed);
         

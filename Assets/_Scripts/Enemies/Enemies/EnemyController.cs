@@ -13,6 +13,7 @@ public class EnemyController : BulletUnit
     public float hoverRange = 15f;
     public float shootDelay = 1f;
     public bool isStunned = false;
+    public AddPlayerStats playerStats;
 
     [HideInInspector]   
     public Transform playerTransform;
@@ -52,6 +53,10 @@ public class EnemyController : BulletUnit
     {
         yield return new WaitForSeconds(1.5f);
         isStunned = false; 
+    }
+
+    public void AddPlayerStats(){
+        
     }
     
 }

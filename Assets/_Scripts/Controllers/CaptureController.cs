@@ -39,7 +39,7 @@ public class CaptureController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         
         if(Input.GetMouseButtonDown(1))
@@ -119,7 +119,11 @@ public class CaptureController : MonoBehaviour
         points.Add(newPoint);
         lineRenderer.positionCount++;
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, newPoint);
-        edgeCollider.points = points.GetRange(0, points.Count-2).ToArray();
+        if(points.Count > 4)
+        {
+            edgeCollider.points = points.GetRange(0, points.Count - 4).ToArray();
+        }
+        
     }
 
     public void ResetLine() {

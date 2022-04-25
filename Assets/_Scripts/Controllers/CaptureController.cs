@@ -53,7 +53,7 @@ public class CaptureController : MonoBehaviour
                 PlayLoopSound();
                 loopCounter++;
                 containsEnemy = false;
-                Debug.Log("loopCounter: " + loopCounter);
+                
             }
             if(Input.GetMouseButton(1))
             {
@@ -67,7 +67,7 @@ public class CaptureController : MonoBehaviour
             if(Input.GetMouseButtonUp(1))
             {
                 
-                Debug.Log("Let go"); 
+                
                 CancelLine();
                
                 

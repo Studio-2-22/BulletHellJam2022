@@ -95,8 +95,10 @@ public class PlayerController : BulletUnit
         shootSpeed += stats.shootSpeed;
         numberOfBullets += stats.numberOfBullets;
         bulletDamage += stats.bulletDamage;
+        Debug.Log(stats.upgradeRadius);
         if(stats.upgradeRadius && bulletManagerIndex+1 < bulletManagers.Length){
-            bm = bulletManagers[bulletManagerIndex++];
+            bulletManagerIndex++;
+            bm = bulletManagers[bulletManagerIndex];
         }
         
     }

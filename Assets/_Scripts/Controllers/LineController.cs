@@ -32,11 +32,15 @@ public class LineController : MonoBehaviour
                 if(other.gameObject.activeSelf){
                     EnemyController enemy = other.gameObject.GetComponent<EnemyController>();
                     enemy.StunEnemy();
-                    if( enemy.maxHp - CaptureController.instance.loopCounter+1 <= 0  && enemy.playerStats != null) {
+                 
+                    if( enemy.hp - (CaptureController.instance.loopCounter + 1) <= 0) {
                         enemy.GivePlayerStats();
+                        Debug.Log("stats given");
                         enemy.gameObject.SetActive(false);
-                    } 
-                    enemy.TakeDamage(CaptureController.instance.loopCounter+1); 
+                    }else{
+                        enemy.TakeDamage(CaptureController.instance.loopCounter+1); 
+                    }
+                    
                 }
                 
             }

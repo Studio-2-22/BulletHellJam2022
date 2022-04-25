@@ -25,7 +25,8 @@ public class WaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DisplayTime();
+        if(currentWave != EnemiesWaves.Count-1)
+            DisplayTime();
         if (EnemiesWaves.Count > 0)
         {
 
@@ -34,25 +35,19 @@ public class WaveManager : MonoBehaviour
             {
                 if(currentWaveObject)
                 {
-                    currentWaveObject.SetActive(false);
-                    for(int i = 0; i < currentWaveObject.transform.childCount; i++)
-                    {
-                       EnemyController enemy = currentWaveObject.transform.GetChild(i).gameObject.GetComponent<EnemyController>();
-                       GreenZakuController gz;
-                       enemy.hp = enemy.maxHp;
-                       enemy.healthBar.setHealth(enemy.maxHp, enemy.maxHp);
-                       enemy.gameObject.SetActive(true);
-                    }
+                    //currentWaveObject.SetActive(false);
+                    
                 }
+               
                 waveTimer = waveLength;
                 currentWave++;
 
-                if (currentWave >= EnemiesWaves.Count)
+                if (currentWave == EnemiesWaves.Count-1)
                 {
-                    currentWave = 0;
+                   transform.GetChild(0).gameObject.SetActive(false);
                 }
-                currentWaveObject = EnemiesWaves[currentWave];
-                currentWaveObject.SetActive(true);
+                EnemiesWaves[currentWave].SetActive(true);
+                
             }
             
         }  

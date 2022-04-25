@@ -3330,11 +3330,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 206953835254550631, guid: 3a204a839e1af1a488d2caea619eaf2e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 206953835254550631, guid: 3a204a839e1af1a488d2caea619eaf2e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 206953836487550470, guid: 3a204a839e1af1a488d2caea619eaf2e, type: 3}
       propertyPath: m_RootOrder
@@ -3350,7 +3350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 206953836487550470, guid: 3a204a839e1af1a488d2caea619eaf2e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -62.20689
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 206953836487550470, guid: 3a204a839e1af1a488d2caea619eaf2e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6532,6 +6532,7 @@ MonoBehaviour:
   DeathSoundIndex: 0
   bm: {fileID: 0}
   bulletSoundIndex: 3
+  FloatingTextPrefab: {fileID: 0}
   healthBar: {fileID: 0}
   shootTimer: 0
   detectionRange: 10
@@ -19230,10 +19231,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 107629277, guid: 53ffe61b3304287479ada255a94f9147, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 361254753, guid: 53ffe61b3304287479ada255a94f9147, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

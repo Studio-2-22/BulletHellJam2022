@@ -44,7 +44,7 @@ public class GameStateManager : MonoBehaviour
                 HandleLosing();
                 break;
             case GameState.Boss:
-                HandleLosing();
+                HandleBoss();
                 break;
             default:
                 return;
@@ -65,6 +65,8 @@ public class GameStateManager : MonoBehaviour
 
     private void HandleLosing() {
         canvas.SetActive(true);
+        //pause time
+        Time.timeScale = 0f;
     }
 
     private void HandleWinning() {
@@ -89,6 +91,8 @@ public class GameStateManager : MonoBehaviour
     public void LoadGame() {
         SceneManager.LoadScene(2);
         canvas.SetActive(false);
+        Time.timeScale = 1f;
+        
     }
 
 

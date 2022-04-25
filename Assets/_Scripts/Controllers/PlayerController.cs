@@ -116,7 +116,7 @@ public class PlayerController : BulletUnit
         healthBar.setHealth(hp, maxHp);
         dashCD -= stats.dashCD;
         dashSpeed = Mathf.Min((stats.dashSpeed + dashSpeed), maxDashSpeed);
-        shootSpeed += stats.shootSpeed;
+        shootSpeed -= stats.shootSpeed;
         numberOfBullets += stats.numberOfBullets;
         bulletDamage += stats.bulletDamage;
         Debug.Log(stats.upgradeRadius);

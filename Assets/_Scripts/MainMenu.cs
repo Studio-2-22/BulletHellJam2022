@@ -15,7 +15,9 @@ public class MainMenu : MonoBehaviour
     }
     public void toggleSettings ()
     {
+        AudioManager.instance.PlaySFX(8);
         if(SettingsMenu.activeSelf){
+            
             MainOptions.SetActive(true);
             SettingsMenu.SetActive(false);
         }else{

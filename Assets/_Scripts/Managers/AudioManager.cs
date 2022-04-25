@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
@@ -8,6 +10,9 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource[] SFX;
     public AudioSource[] Music;
+    public AudioMixer masterMixer;
+    
+
 
    void Awake()
     {
@@ -106,6 +111,12 @@ public class AudioManager : MonoBehaviour
         {
             audio.UnPause();
         }
+    }
+
+    public void setSoundVolume(float volume)
+    {
+        PlayerPrefs.SetFloat("Master", volume);
+        masterMixer.SetFloat("Master", Mathf.Log10(volume) * 20);
     }
 
 

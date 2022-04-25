@@ -36,6 +36,12 @@ public class EnemyController : BulletUnit
         healthBar.setHealth(hp, maxHp);
     }
 
+    public override void TakeBulletDamage(BulletContainer bullet, BulletCollider bc)
+    {
+        TakeDamage(PlayerController.instance.bulletDamage);
+        healthBar.setHealth(hp, maxHp);
+    }
+
     public virtual void OnEnable(){
         hp = maxHp;
         isStunned = false;

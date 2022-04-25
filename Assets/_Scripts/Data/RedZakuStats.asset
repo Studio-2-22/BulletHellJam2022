@@ -15,6 +15,7 @@ MonoBehaviour:
   hp: 0
   dashCD: 0
   dashSpeed: 0
-  shootSpeed: 0.05
+  shootSpeed: 0.1
   bulletDamage: 0
   numberOfBullets: 0
+  upgradeRadius: 0

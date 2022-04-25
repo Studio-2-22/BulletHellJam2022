@@ -17,10 +17,10 @@ MonoBehaviour:
   burstDelay: 0.45
   spawnDir: 0
   directionArc: 0
-  randomise: 1
+  randomise: 0
   onEdge: 0
-  numSides: 8
-  numPerSide: 8
-  radius: 8
-  arc: 30
+  numSides: 3
+  numPerSide: 1
+  radius: 0.5
+  arc: 42
   isExpanded: 1

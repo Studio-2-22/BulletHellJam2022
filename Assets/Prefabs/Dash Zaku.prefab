@@ -404,7 +404,7 @@ MonoBehaviour:
   isStunned: 0
   playerStats: {fileID: 11400000, guid: 3c10c6b0b841208478eb23e03697639c, type: 2}
   playerTransform: {fileID: 0}
-  DashDamage: 3
+  DashDamage: 0.5
   DashSpeed: 4
 --- !u!96 &7850523315597387601
 TrailRenderer:

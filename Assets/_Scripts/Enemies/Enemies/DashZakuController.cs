@@ -51,10 +51,6 @@ public class DashZakuController : EnemyController
     void Dash(){
         isDashing = true;
         rb.velocity = (playerTransform.position - transform.position).normalized * movementSpeed * DashSpeed;
-        Collider2D playerCollider = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Player"));
-        if(playerCollider != null){
-            PlayerController.instance.TakeDamage(DashDamage);
-        }
         StartCoroutine(DashCo());
     }
 
@@ -63,5 +59,11 @@ public class DashZakuController : EnemyController
         rb.velocity = Vector2.zero;
         isDashing = false;
         startRotation = transform.rotation;
+    }
+
+    void OnTriggerEnter2D(Collider2D other){
+        if(other.tag == "Player"   ){
+            PlayerController.instance.TakeDamage(DashDamage);
+        }
     }
 }

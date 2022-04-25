@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 7850523315597387599}
   - component: {fileID: 7850523315597387600}
   - component: {fileID: 7850523315597387601}
+  - component: {fileID: 706244381560512400}
   m_Layer: 9
   m_Name: Dash Zaku
   m_TagString: Enemy
@@ -338,7 +339,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.008174181, y: -0.0070064366}
+  m_Offset: {x: 0.06907356, y: 0.13698006}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -349,7 +350,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.19893494, y: 0.25732094}
+  m_Size: {x: 2.389961, y: 3.5368872}
   m_EdgeRadius: 0
 --- !u!50 &7850523315597387599
 Rigidbody2D:
@@ -513,6 +514,32 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!61 &706244381560512400
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7850523315597387597}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.04551688, y: 0.60309434}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4, y: 4}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.824496, y: 4.473807}
+  m_EdgeRadius: 0
 --- !u!1 &7850523316130405113
 GameObject:
   m_ObjectHideFlags: 0

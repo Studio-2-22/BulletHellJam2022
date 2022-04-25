@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27a23ae2178c4258a35e0704bcdfe093, type: 3}
-  m_Name: PlayerSpawnSettings
+  m_Name: PlayerSpawnSettings 1
   m_EditorClassIdentifier: 
   fireRate: 0.2
   burstCount: 1
@@ -19,8 +19,8 @@ MonoBehaviour:
   directionArc: 0
   randomise: 0
   onEdge: 0
-  numSides: 1
+  numSides: 3
   numPerSide: 1
   radius: 1
-  arc: 1
+  arc: 60
   isExpanded: 1

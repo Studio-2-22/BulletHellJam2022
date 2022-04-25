@@ -55,7 +55,7 @@ public class EnemyController : BulletUnit
         isStunned = false; 
     }
 
-    public void AddStats(){
+    public void GivePlayerStats(){
         
         PlayerController.instance.AddStats(playerStats);
     }

@@ -1,19 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class AddPlayerStats : MonoBehaviour
+[CreateAssetMenu(fileName = "Data", menuName = "Data/AddPlayerStats", order = 1)]
+public class AddPlayerStats : ScriptableObject
 {
-
-    public float MaxHP;
-    public float HP;
-
-    public float fireRate;
-    public float DashMultiplier;
-    public float NumberOfBullets;
-    public float BulletSpeed;
-    public float BulletDamage;
-
-    
-    
+    public float hp = 0;
+    public float dashCD = 0;
+    public float dashSpeed = 0;
+    public float  shootSpeed = 0;
+    public float bulletDamage = 0;
+    public int numberOfBullets = 0;
+    public bool upgradeRadius = false; 
 }

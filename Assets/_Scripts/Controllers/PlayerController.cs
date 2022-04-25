@@ -45,8 +45,14 @@ public class PlayerController : BulletUnit
 
     public override void TakeDamage(float damage)
     {
-        base.TakeDamage(damage);
+        hp -= damage;
         healthBar.setHealth(hp, maxHp);
+        if (hp <= 0)
+        {
+            KillUnit();
+            GameStateManager.instance.ChangeState(GameStateManager.GameState.Lose);           
+        }
+        
     }
 
     // Update is called once per frame

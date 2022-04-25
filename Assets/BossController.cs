@@ -7,7 +7,6 @@ using BulletFury.Data;
 
 public class BossController : MonoBehaviour
 {
-    private Animator anim;
 
     public float speed;
 
@@ -24,12 +23,6 @@ public class BossController : MonoBehaviour
         hp = maxHp;
         healthBar.setHealth(hp,maxHp);
         GameStateManager.instance.ChangeState(GameStateManager.GameState.Boss);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public  void TakeDamage(float damage)

@@ -15,5 +15,6 @@ public class SwitchSceneonTimer : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(sceneNum);
+        GameStateManager.instance.ChangeState(GameStateManager.GameState.StartGame);
     }
 }

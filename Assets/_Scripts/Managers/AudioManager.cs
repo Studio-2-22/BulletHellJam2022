@@ -34,6 +34,11 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(int index)
     {
+        //stop all music
+        foreach (AudioSource a in Music)
+        {
+            a.Stop();
+        }
         Music[index].Play();
     }
 

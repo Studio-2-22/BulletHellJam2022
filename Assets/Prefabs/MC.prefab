@@ -500,11 +500,11 @@ MonoBehaviour:
   bm: {fileID: 0}
   bulletSoundIndex: 3
   healthBar: {fileID: 107629274}
-  dashCD: 0.3
-  dashSpeed: 10
-  maxDashSpeed: 10
+  dashCD: 2
+  dashSpeed: 5
+  maxDashSpeed: 5
   buttonCount: 0
-  shootSpeed: 0.5
+  shootSpeed: 0.2
   numberOfBullets: 100
   bulletDamage: 1
   bulletManagers:
@@ -554,7 +554,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &7883111918781369522
 BoxCollider2D:
@@ -573,7 +573,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -664,8 +664,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 93015f04644e00042b9d1defc730814c, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.9263606, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0e53f67352db6d74b96bd9a6a18bb016, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

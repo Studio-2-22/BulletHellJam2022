@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
 {
     public static GameStateManager instance;
-    public AudioClip musicOnStart;
-
+    public GameObject canvas;
     public GameState State { get; private set; }
 
     void Awake()
@@ -34,6 +34,9 @@ public class GameStateManager : MonoBehaviour
             case GameState.Starting:
                 HandleStarting();
                 break;
+            case GameState.StartGame:
+                HandleStartGame();
+                break;
             case GameState.Win:
                 HandleWinning();
                 break;
@@ -53,7 +56,7 @@ public class GameStateManager : MonoBehaviour
     }
 
     private void HandleCutscene() {
-       AudioManager.instance.PlayMusic(1);
+       AudioManager.instance.PlayMusic(2);
     }
 
     private void HandleStartGame() {
@@ -61,15 +64,16 @@ public class GameStateManager : MonoBehaviour
     }
 
     private void HandleLosing() {
-       
+        canvas.SetActive(true);
     }
 
     private void HandleWinning() {
-       
+        AudioManager.instance.PlayMusic(1);
+        SceneManager.LoadScene(1);
     }
 
     private void HandleBoss() {
-       
+       AudioManager.instance.PlayMusic(1);
     }
 
     public enum GameState
@@ -78,6 +82,14 @@ public class GameStateManager : MonoBehaviour
         SpawningHeroes = 1,
         Win = 2,
         Lose = 3,
-        Boss= 4
+        Boss= 4,
+        StartGame=5
     }
+
+    public void LoadGame() {
+        SceneManager.LoadScene(2);
+        canvas.SetActive(false);
+    }
+
+
 }

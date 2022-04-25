@@ -22,5 +22,5 @@ MonoBehaviour:
   numSides: 5
   numPerSide: 1
   radius: 1
-  arc: 90
+  arc: 60
   isExpanded: 1

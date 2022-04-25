@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class EnemyController : BulletUnit
 {
+    public GameObject FloatingTextPrefab; 
     public HealthBarBehaviour healthBar;
     [HideInInspector]
     public float shootTimer = 0f;
@@ -34,6 +35,7 @@ public class EnemyController : BulletUnit
     {
         base.TakeDamage(damage);
         healthBar.setHealth(hp, maxHp);
+
     }
 
     public override void TakeBulletDamage(BulletContainer bullet, BulletCollider bc)
@@ -64,6 +66,11 @@ public class EnemyController : BulletUnit
     public void GivePlayerStats(){
         
         PlayerController.instance.AddStats(playerStats);
+    }
+
+    public void ShowFloatingText()
+    {
+        var showText = Instantiate(FloatingTextPrefab, transform.position, Quaternion.identity);
     }
     
 }

@@ -479,6 +479,7 @@ MonoBehaviour:
   DeathSoundIndex: 0
   bm: {fileID: 0}
   bulletSoundIndex: 3
+  FloatingTextPrefab: {fileID: 6030402073630021821, guid: 8e1b297c9bf1ab34cb48b267aa583417, type: 3}
   healthBar: {fileID: 6328849909191843249}
   shootTimer: 0
   detectionRange: 50

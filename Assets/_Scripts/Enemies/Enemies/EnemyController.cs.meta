@@ -3,7 +3,15 @@ guid: 313d6b4b4f7d7884f8a047ebe3337f81
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bc: {instanceID: 0}
+  - rb: {instanceID: 0}
+  - deathPrefab: {instanceID: 0}
+  - bm: {instanceID: 0}
+  - FloatingTextPrefab: {fileID: 2372055526359766249, guid: eb9ef8ef10b747547b17b2a63ff4a224, type: 3}
+  - healthBar: {instanceID: 0}
+  - playerStats: {instanceID: 0}
+  - playerTransform: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

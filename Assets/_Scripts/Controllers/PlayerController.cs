@@ -107,6 +107,7 @@ public class PlayerController : BulletUnit
         //rb.AddForce(-transform.up * boostFactor * movementSpeed);
         
         isDashing = true;
+        AudioManager.instance.PlaySFX(12);
         GetComponent<BoxCollider2D>().enabled = false;
         rb.velocity = rb.velocity + ((Vector2)transform.up * dashSpeed * movementSpeed);
         GetComponent<TrailRenderer>().enabled = true;

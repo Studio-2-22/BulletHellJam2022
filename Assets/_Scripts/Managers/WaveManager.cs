@@ -46,6 +46,7 @@ public class WaveManager : MonoBehaviour
                 {
                    transform.GetChild(0).gameObject.SetActive(false);
                 }
+                AudioManager.instance.PlaySFX(10);
                 EnemiesWaves[currentWave].SetActive(true);
                 
             }

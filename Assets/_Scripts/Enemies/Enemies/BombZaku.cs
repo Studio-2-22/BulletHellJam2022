@@ -38,6 +38,7 @@ public class BombZaku : EnemyController
         if(explosionTimer > explosionDelay){
           exploded = true;
           Explode();
+          AudioManager.instance.PlaySFX(11);
         }
       }
     }

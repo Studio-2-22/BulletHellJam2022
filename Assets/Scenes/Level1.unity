@@ -2585,7 +2585,6 @@ GameObject:
   - component: {fileID: 519938501}
   - component: {fileID: 519938504}
   - component: {fileID: 519938503}
-  - component: {fileID: 519938502}
   m_Layer: 3
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2613,25 +2612,6 @@ RectTransform:
   m_AnchoredPosition: {x: 57, y: -14.4}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &519938502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519938500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c775cd30c46c6fb4bb028a60596030fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  typingSpeed: 0.1
-  dialogues:
-  - You can dash with the spacebar.
-  - Capture with right click, killing your enemies does not reward you.
-  - What's that sound?
-  - The boss is coming...
-  fullText: 
 --- !u!114 &519938503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3377,7 +3357,6 @@ GameObject:
   - component: {fileID: 594914511}
   - component: {fileID: 594914510}
   - component: {fileID: 594914509}
-  - component: {fileID: 594914508}
   m_Layer: 3
   m_Name: Image
   m_TagString: Untagged
@@ -3406,21 +3385,6 @@ RectTransform:
   m_AnchoredPosition: {x: -378, y: -412}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &594914508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 594914506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c775cd30c46c6fb4bb028a60596030fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  typingSpeed: 0.1
-  dialogues: []
-  fullText: 
 --- !u!114 &594914509
 MonoBehaviour:
   m_ObjectHideFlags: 0

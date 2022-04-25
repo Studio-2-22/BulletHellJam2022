@@ -25,7 +25,7 @@ public class BulletUnit : Unit
         bm.Spawn(transform.position, transform.up);
     }
 
-  public void OnBulletSpawned(int x, BulletContainer bc)
+  public virtual void OnBulletSpawned(int x, BulletContainer bc)
   {
     AudioManager.instance.PlayEffect(bulletSoundIndex); // index 3 is the shoot sound
   }

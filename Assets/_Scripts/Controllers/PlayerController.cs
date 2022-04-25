@@ -113,6 +113,7 @@ public class PlayerController : BulletUnit
     public void AddStats(AddPlayerStats stats){
         
         hp = Mathf.Min(hp + stats.hp, maxHp);
+        healthBar.setHealth(hp, maxHp);
         dashCD -= stats.dashCD;
         dashSpeed = Mathf.Min((stats.dashSpeed + dashSpeed), maxDashSpeed);
         shootSpeed += stats.shootSpeed;

@@ -31,7 +31,7 @@ public class Unit : MonoBehaviour
             KillUnit();           
         }
     }
-     public void TakeBulletDamage(BulletContainer bullet, BulletCollider bc){
+     public virtual void TakeBulletDamage(BulletContainer bullet, BulletCollider bc){
         TakeDamage(bullet.Damage);
     }
 

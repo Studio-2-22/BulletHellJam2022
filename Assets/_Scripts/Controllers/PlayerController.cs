@@ -7,6 +7,7 @@ using BulletFury.Data;
 public class PlayerController : BulletUnit
 {
     public static PlayerController instance;
+    public PlayerHealthBarBehaviour healthBar;
     public float dashCD = 0.3f; 
     public float dashSpeed = 5f;
     public float maxDashSpeed = 10f;
@@ -37,7 +38,15 @@ public class PlayerController : BulletUnit
     // Start is called before the first frame update
     public override void Start()
     {
-        base.Start(); // calls BulletUnit Start()
+        base.Start();
+        Debug.Log("PlayerController Start");
+        healthBar.setHealth(maxHp, maxHp);
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        healthBar.setHealth(hp, maxHp);
     }
 
     // Update is called once per frame

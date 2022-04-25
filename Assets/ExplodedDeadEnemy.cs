@@ -12,7 +12,7 @@ public class ExplodedDeadEnemy : MonoBehaviour
         Rigidbody2D[] children = GetComponentsInChildren<Rigidbody2D>();
         foreach (Rigidbody2D child in children)
         {
-            Vector2 direction = child.transform.localPosition.normalized;
+            Vector2 direction = (Vector2) child.transform.localPosition.normalized - Vector2.zero ;
             child.AddForce(direction * 100f);
         }
         StartCoroutine(WaitAndDestroy());

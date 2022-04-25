@@ -91,7 +91,7 @@ public class PlayerController : BulletUnit
         //rb.AddForce(-transform.up * boostFactor * movementSpeed);
         
         isDashing = true;
-        GetComponent<CircleCollider2D>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
         rb.velocity = rb.velocity + ((Vector2)transform.up * dashSpeed * movementSpeed);
         GetComponent<TrailRenderer>().enabled = true;
 
@@ -128,10 +128,11 @@ public class PlayerController : BulletUnit
         yield return new WaitForSeconds(dashTime);
         rb.velocity = rb.velocity * 0.01f;
         isDashing = false;
-        GetComponent<CircleCollider2D>().enabled = true; 
+        GetComponent<BoxCollider2D>().enabled = true;
         GetComponent<TrailRenderer>().enabled = false;
 
-     
+
+
     }
     IEnumerator DashCoolDown()
     {

@@ -50,7 +50,6 @@ public class PlayerController : BulletUnit
         if (hp <= 0)
         {
             KillUnit();
-            StartCoroutine(LoseGame());
             GameStateManager.instance.ChangeState(GameStateManager.GameState.Lose);           
         }
         

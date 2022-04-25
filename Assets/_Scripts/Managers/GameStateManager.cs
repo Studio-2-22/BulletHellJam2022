@@ -71,7 +71,7 @@ public class GameStateManager : MonoBehaviour
 
     private void HandleWinning() {
         AudioManager.instance.PlayMusic(1);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
     }
 
     private void HandleBoss() {

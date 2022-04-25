@@ -1768,7 +1768,7 @@ MonoBehaviour:
   typingSpeed: 0.1
   dialogues:
   - You can dash with the spacebar.
-  - Capture with right click, killing your enemies does not reward you.
+  - Capturing with right click will build your stats up.
   - If you capture enough Dashers you get a special power...
   - What's that sound?
   - The boss is coming...
@@ -19784,7 +19784,7 @@ PrefabInstance:
       objectReference: {fileID: 1751742621}
     - target: {fileID: 7883111918781369535, guid: 53ffe61b3304287479ada255a94f9147, type: 3}
       propertyPath: maxHp
-      value: 10000
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7883111918781369535, guid: 53ffe61b3304287479ada255a94f9147, type: 3}
       propertyPath: bulletManagers.Array.data[0]
